@@ -74,6 +74,7 @@
 		7F9A6B062D66CD8F00261C09 /* LoginFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AF62D66CD8F00261C09 /* LoginFieldUI.swift */; };
 		7F9A6B072D66CD8F00261C09 /* RegisterFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AFB2D66CD8F00261C09 /* RegisterFieldType.swift */; };
 		7F9A6B082D66CD8F00261C09 /* LoginFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AF42D66CD8F00261C09 /* LoginFieldType.swift */; };
+		7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */; };
 		B5B0FA056EF44DD24C80DC4A /* Pods_MyFoodList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144461F49635E2F032B0EED8 /* Pods_MyFoodList.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +151,7 @@
 		7F9A6AFB2D66CD8F00261C09 /* RegisterFieldType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFieldType.swift; sourceTree = "<group>"; };
 		7F9A6AFD2D66CD8F00261C09 /* RegisterFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFieldUI.swift; sourceTree = "<group>"; };
 		7F9A6AFF2D66CD8F00261C09 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
+		7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +214,7 @@
 				7F9A6AF32D66CD8F00261C09 /* 首頁 */,
 				7F9A6AFA2D66CD8F00261C09 /* 登入 */,
 				7F9A6B002D66CD8F00261C09 /* 註冊 */,
+				7F9A6B0A2D66CFD700261C09 /* 新增美食 */,
 				7F9A6A622D66CB8700261C09 /* Assets.xcassets */,
 				7F9A6A632D66CB8700261C09 /* Info.plist */,
 				7F9A6A652D66CB8700261C09 /* LaunchScreen.storyboard */,
@@ -498,6 +501,14 @@
 			path = "註冊";
 			sourceTree = "<group>";
 		};
+		7F9A6B0A2D66CFD700261C09 /* 新增美食 */ = {
+			isa = PBXGroup;
+			children = (
+				7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */,
+			);
+			path = "新增美食";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -663,6 +674,7 @@
 				7F9A6AD52D66CD8400261C09 /* APIUrl.swift in Sources */,
 				7F9A6AD62D66CD8400261C09 /* MyDivider.swift in Sources */,
 				7F9A6AD72D66CD8400261C09 /* MyLoading.swift in Sources */,
+				7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */,
 				7F9A6AD82D66CD8400261C09 /* LanguageManager.swift in Sources */,
 				7F9A6AD92D66CD8400261C09 /* WebViewURL.swift in Sources */,
 				7F9A6ADA2D66CD8400261C09 /* MyPackageControl.swift in Sources */,
