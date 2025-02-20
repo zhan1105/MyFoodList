@@ -1,0 +1,28 @@
+PODS:
+  - FSPagerView (0.8.3)
+  - GoogleMaps (9.1.0):
+    - GoogleMaps/Maps (= 9.1.0)
+  - GoogleMaps/Base (9.1.0)
+  - GoogleMaps/Maps (9.1.0):
+    - GoogleMaps/Base
+  - GooglePlaces (9.0.0)
+
+DEPENDENCIES:
+  - FSPagerView
+  - GoogleMaps
+  - GooglePlaces
+
+SPEC REPOS:
+  trunk:
+    - FSPagerView
+    - GoogleMaps
+    - GooglePlaces
+
+SPEC CHECKSUMS:
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  GoogleMaps: c74e02e00db0be27b165516bde753826e2652b9c
+  GooglePlaces: cf1f5b61297da7ac64bcb147cfa7b435d74ed6d9
+
+PODFILE CHECKSUM: b6bc3ca65b000d1a68d4043f2d5181d949bd96cd
+
+COCOAPODS: 1.15.2
