@@ -75,6 +75,13 @@
 		7F9A6B072D66CD8F00261C09 /* RegisterFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AFB2D66CD8F00261C09 /* RegisterFieldType.swift */; };
 		7F9A6B082D66CD8F00261C09 /* LoginFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AF42D66CD8F00261C09 /* LoginFieldType.swift */; };
 		7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */; };
+		7FFF73322D6C3F050090E201 /* MyTabBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */; };
+		7FFF73352D6C41D40090E201 /* AppTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73342D6C41D40090E201 /* AppTabBar.swift */; };
+		7FFF73372D6C428B0090E201 /* AppTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73362D6C428B0090E201 /* AppTabItem.swift */; };
+		7FFF733C2D6C43CE0090E201 /* TabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF733B2D6C43CE0090E201 /* TabBarType.swift */; };
+		7FFF73412D6C52B40090E201 /* LocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73402D6C52B40090E201 /* LocationScreen.swift */; };
+		7FFF73432D6C52F80090E201 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73422D6C52F80090E201 /* SearchScreen.swift */; };
+		7FFF73452D6C53300090E201 /* RandomScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73442D6C53300090E201 /* RandomScreen.swift */; };
 		B5B0FA056EF44DD24C80DC4A /* Pods_MyFoodList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144461F49635E2F032B0EED8 /* Pods_MyFoodList.framework */; };
 /* End PBXBuildFile section */
 
@@ -152,6 +159,13 @@
 		7F9A6AFD2D66CD8F00261C09 /* RegisterFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFieldUI.swift; sourceTree = "<group>"; };
 		7F9A6AFF2D66CD8F00261C09 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodScreen.swift; sourceTree = "<group>"; };
+		7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBarScreen.swift; sourceTree = "<group>"; };
+		7FFF73342D6C41D40090E201 /* AppTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBar.swift; sourceTree = "<group>"; };
+		7FFF73362D6C428B0090E201 /* AppTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabItem.swift; sourceTree = "<group>"; };
+		7FFF733B2D6C43CE0090E201 /* TabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarType.swift; sourceTree = "<group>"; };
+		7FFF73402D6C52B40090E201 /* LocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreen.swift; sourceTree = "<group>"; };
+		7FFF73422D6C52F80090E201 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
+		7FFF73442D6C53300090E201 /* RandomScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,10 +225,14 @@
 				7F9A6AA52D66CD8400261C09 /* MyTools */,
 				7F9A6ABC2D66CD8400261C09 /* AppTools */,
 				7F9A6A672D66CB8700261C09 /* Main.storyboard */,
-				7F9A6AF32D66CD8F00261C09 /* 首頁 */,
 				7F9A6AFA2D66CD8F00261C09 /* 登入 */,
 				7F9A6B002D66CD8F00261C09 /* 註冊 */,
+				7FFF73302D6C3EC20090E201 /* MyTabBar */,
+				7F9A6AF32D66CD8F00261C09 /* 首頁 */,
+				7FFF733D2D6C52580090E201 /* 附近美食 */,
 				7F9A6B0A2D66CFD700261C09 /* 新增美食 */,
+				7FFF733E2D6C526D0090E201 /* 搜尋美食 */,
+				7FFF733F2D6C527E0090E201 /* 隨機美食 */,
 				7F9A6A622D66CB8700261C09 /* Assets.xcassets */,
 				7F9A6A632D66CB8700261C09 /* Info.plist */,
 				7F9A6A652D66CB8700261C09 /* LaunchScreen.storyboard */,
@@ -509,6 +527,57 @@
 			path = "新增美食";
 			sourceTree = "<group>";
 		};
+		7FFF73302D6C3EC20090E201 /* MyTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7FFF733A2D6C43C30090E201 /* Model */,
+				7FFF73332D6C41BF0090E201 /* UI */,
+				7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */,
+			);
+			path = MyTabBar;
+			sourceTree = "<group>";
+		};
+		7FFF73332D6C41BF0090E201 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7FFF73342D6C41D40090E201 /* AppTabBar.swift */,
+				7FFF73362D6C428B0090E201 /* AppTabItem.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7FFF733A2D6C43C30090E201 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7FFF733B2D6C43CE0090E201 /* TabBarType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7FFF733D2D6C52580090E201 /* 附近美食 */ = {
+			isa = PBXGroup;
+			children = (
+				7FFF73402D6C52B40090E201 /* LocationScreen.swift */,
+			);
+			path = "附近美食";
+			sourceTree = "<group>";
+		};
+		7FFF733E2D6C526D0090E201 /* 搜尋美食 */ = {
+			isa = PBXGroup;
+			children = (
+				7FFF73422D6C52F80090E201 /* SearchScreen.swift */,
+			);
+			path = "搜尋美食";
+			sourceTree = "<group>";
+		};
+		7FFF733F2D6C527E0090E201 /* 隨機美食 */ = {
+			isa = PBXGroup;
+			children = (
+				7FFF73442D6C53300090E201 /* RandomScreen.swift */,
+			);
+			path = "隨機美食";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -644,12 +713,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7F9A6A6D2D66CB8700261C09 /* AppDelegate.swift in Sources */,
+				7FFF73352D6C41D40090E201 /* AppTabBar.swift in Sources */,
 				7F9A6A6E2D66CB8700261C09 /* MyFoodList.xcdatamodeld in Sources */,
 				7F9A6A6F2D66CB8700261C09 /* SceneDelegate.swift in Sources */,
 				7F9A6A702D66CB8700261C09 /* ViewController.swift in Sources */,
+				7FFF73372D6C428B0090E201 /* AppTabItem.swift in Sources */,
 				7F9A6ABD2D66CD8400261C09 /* TextField+.swift in Sources */,
 				7F9A6ABE2D66CD8400261C09 /* MyText.swift in Sources */,
 				7F9A6ABF2D66CD8400261C09 /* Font+.swift in Sources */,
+				7FFF733C2D6C43CE0090E201 /* TabBarType.swift in Sources */,
 				7F9A6AC02D66CD8400261C09 /* MyMessage.swift in Sources */,
 				7F9A6AC12D66CD8400261C09 /* AppField.swift in Sources */,
 				7F9A6AC22D66CD8400261C09 /* MyLinkLabel.swift in Sources */,
@@ -657,6 +729,7 @@
 				7F9A6AC42D66CD8400261C09 /* MyViewController.swift in Sources */,
 				7F9A6AC52D66CD8400261C09 /* SignatureView.swift in Sources */,
 				7F9A6AC62D66CD8400261C09 /* MySymbol.swift in Sources */,
+				7FFF73322D6C3F050090E201 /* MyTabBarScreen.swift in Sources */,
 				7F9A6AC72D66CD8400261C09 /* ImageNameItem.swift in Sources */,
 				7F9A6AC82D66CD8400261C09 /* SwitchLanguage.swift in Sources */,
 				7F9A6AC92D66CD8400261C09 /* MyLabel.swift in Sources */,
@@ -670,8 +743,10 @@
 				7F9A6AD12D66CD8400261C09 /* PackageButton.swift in Sources */,
 				7F9A6AD22D66CD8400261C09 /* URL+.swift in Sources */,
 				7F9A6AD32D66CD8400261C09 /* MyView.swift in Sources */,
+				7FFF73432D6C52F80090E201 /* SearchScreen.swift in Sources */,
 				7F9A6AD42D66CD8400261C09 /* MyPackageImage.swift in Sources */,
 				7F9A6AD52D66CD8400261C09 /* APIUrl.swift in Sources */,
+				7FFF73412D6C52B40090E201 /* LocationScreen.swift in Sources */,
 				7F9A6AD62D66CD8400261C09 /* MyDivider.swift in Sources */,
 				7F9A6AD72D66CD8400261C09 /* MyLoading.swift in Sources */,
 				7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */,
@@ -697,6 +772,7 @@
 				7F9A6AE32D66CD8400261C09 /* UserDefaultsKey.swift in Sources */,
 				7F9A6AE42D66CD8400261C09 /* MyPackageSwitch.swift in Sources */,
 				7F9A6AE52D66CD8400261C09 /* MyDatePicker.swift in Sources */,
+				7FFF73452D6C53300090E201 /* RandomScreen.swift in Sources */,
 				7F9A6AE62D66CD8400261C09 /* MyStack.swift in Sources */,
 				7F9A6AE72D66CD8400261C09 /* MyTextField.swift in Sources */,
 				7F9A6AE82D66CD8400261C09 /* NationalItem.swift in Sources */,
