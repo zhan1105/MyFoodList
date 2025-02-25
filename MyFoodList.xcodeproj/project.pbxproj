@@ -79,7 +79,7 @@
 		7FFF73352D6C41D40090E201 /* AppTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73342D6C41D40090E201 /* AppTabBar.swift */; };
 		7FFF73372D6C428B0090E201 /* AppTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73362D6C428B0090E201 /* AppTabItem.swift */; };
 		7FFF733C2D6C43CE0090E201 /* TabBarType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF733B2D6C43CE0090E201 /* TabBarType.swift */; };
-		7FFF73412D6C52B40090E201 /* LocationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73402D6C52B40090E201 /* LocationScreen.swift */; };
+		7FFF73412D6C52B40090E201 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73402D6C52B40090E201 /* MapScreen.swift */; };
 		7FFF73432D6C52F80090E201 /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73422D6C52F80090E201 /* SearchScreen.swift */; };
 		7FFF73452D6C53300090E201 /* RandomScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73442D6C53300090E201 /* RandomScreen.swift */; };
 		B5B0FA056EF44DD24C80DC4A /* Pods_MyFoodList.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 144461F49635E2F032B0EED8 /* Pods_MyFoodList.framework */; };
@@ -163,7 +163,7 @@
 		7FFF73342D6C41D40090E201 /* AppTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBar.swift; sourceTree = "<group>"; };
 		7FFF73362D6C428B0090E201 /* AppTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabItem.swift; sourceTree = "<group>"; };
 		7FFF733B2D6C43CE0090E201 /* TabBarType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarType.swift; sourceTree = "<group>"; };
-		7FFF73402D6C52B40090E201 /* LocationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationScreen.swift; sourceTree = "<group>"; };
+		7FFF73402D6C52B40090E201 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		7FFF73422D6C52F80090E201 /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		7FFF73442D6C53300090E201 /* RandomScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -557,7 +557,7 @@
 		7FFF733D2D6C52580090E201 /* 附近美食 */ = {
 			isa = PBXGroup;
 			children = (
-				7FFF73402D6C52B40090E201 /* LocationScreen.swift */,
+				7FFF73402D6C52B40090E201 /* MapScreen.swift */,
 			);
 			path = "附近美食";
 			sourceTree = "<group>";
@@ -746,7 +746,7 @@
 				7FFF73432D6C52F80090E201 /* SearchScreen.swift in Sources */,
 				7F9A6AD42D66CD8400261C09 /* MyPackageImage.swift in Sources */,
 				7F9A6AD52D66CD8400261C09 /* APIUrl.swift in Sources */,
-				7FFF73412D6C52B40090E201 /* LocationScreen.swift in Sources */,
+				7FFF73412D6C52B40090E201 /* MapScreen.swift in Sources */,
 				7F9A6AD62D66CD8400261C09 /* MyDivider.swift in Sources */,
 				7F9A6AD72D66CD8400261C09 /* MyLoading.swift in Sources */,
 				7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */,

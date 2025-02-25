@@ -13,7 +13,7 @@ class MyTabBarScreen: MyViewController {
     private let appTabBar = AppTabBar()
     
     private let homeScreen = HomeScreen()
-    private let locationScreen = LocationScreen()
+    private let mapScreen = MapScreen()
     private let searchScreen = SearchScreen()
     private let randomScreen = RandomScreen()
     
@@ -50,7 +50,7 @@ extension MyTabBarScreen {
         
         appTabBar.setTapAction(.Location) { [weak self] in
             guard let self = self else { return }
-            setScreen(locationScreen, .Location)
+            setScreen(mapScreen, .Location)
         }
         
         appTabBar.setTapAction(.AddFood) { [weak self] in
