@@ -75,7 +75,7 @@ class AppTabItem: UIView {
         menuLabel.font = .boldFootnote
         menuLabel.padding(to: 5)
                 
-        menuImage.viewPadding(to: 5)
+        menuImage.viewPadding(to: 7.5)
         
         let subScreen = MyStack(arrangedSubviews: [menuImage, menuLabel])
         subScreen.translatesAutoresizingMaskIntoConstraints = false
@@ -87,8 +87,8 @@ class AppTabItem: UIView {
             subScreen.leadingAnchor.constraint(equalTo: leadingAnchor),
             subScreen.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            menuImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.725),
-            menuLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.275),
+            menuImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.7),
+            menuLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.3),
         ])
     }
     

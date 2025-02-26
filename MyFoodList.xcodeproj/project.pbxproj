@@ -75,6 +75,8 @@
 		7F9A6B072D66CD8F00261C09 /* RegisterFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AFB2D66CD8F00261C09 /* RegisterFieldType.swift */; };
 		7F9A6B082D66CD8F00261C09 /* LoginFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AF42D66CD8F00261C09 /* LoginFieldType.swift */; };
 		7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */; };
+		7FE20AEF2D6D4EA60099A96C /* RandomButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */; };
+		7FE20AF52D6D944E0099A96C /* RandomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE20AF42D6D944E0099A96C /* RandomUI.swift */; };
 		7FFF73322D6C3F050090E201 /* MyTabBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */; };
 		7FFF73352D6C41D40090E201 /* AppTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73342D6C41D40090E201 /* AppTabBar.swift */; };
 		7FFF73372D6C428B0090E201 /* AppTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73362D6C428B0090E201 /* AppTabItem.swift */; };
@@ -159,6 +161,8 @@
 		7F9A6AFD2D66CD8F00261C09 /* RegisterFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFieldUI.swift; sourceTree = "<group>"; };
 		7F9A6AFF2D66CD8F00261C09 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodScreen.swift; sourceTree = "<group>"; };
+		7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomButtonUI.swift; sourceTree = "<group>"; };
+		7FE20AF42D6D944E0099A96C /* RandomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUI.swift; sourceTree = "<group>"; };
 		7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBarScreen.swift; sourceTree = "<group>"; };
 		7FFF73342D6C41D40090E201 /* AppTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabBar.swift; sourceTree = "<group>"; };
 		7FFF73362D6C428B0090E201 /* AppTabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTabItem.swift; sourceTree = "<group>"; };
@@ -527,6 +531,15 @@
 			path = "新增美食";
 			sourceTree = "<group>";
 		};
+		7FE20AED2D6D4E7D0099A96C /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */,
+				7FE20AF42D6D944E0099A96C /* RandomUI.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		7FFF73302D6C3EC20090E201 /* MyTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +586,7 @@
 		7FFF733F2D6C527E0090E201 /* 隨機美食 */ = {
 			isa = PBXGroup;
 			children = (
+				7FE20AED2D6D4E7D0099A96C /* UI */,
 				7FFF73442D6C53300090E201 /* RandomScreen.swift */,
 			);
 			path = "隨機美食";
@@ -722,6 +736,7 @@
 				7F9A6ABE2D66CD8400261C09 /* MyText.swift in Sources */,
 				7F9A6ABF2D66CD8400261C09 /* Font+.swift in Sources */,
 				7FFF733C2D6C43CE0090E201 /* TabBarType.swift in Sources */,
+				7FE20AEF2D6D4EA60099A96C /* RandomButtonUI.swift in Sources */,
 				7F9A6AC02D66CD8400261C09 /* MyMessage.swift in Sources */,
 				7F9A6AC12D66CD8400261C09 /* AppField.swift in Sources */,
 				7F9A6AC22D66CD8400261C09 /* MyLinkLabel.swift in Sources */,
@@ -768,6 +783,7 @@
 				7F9A6B072D66CD8F00261C09 /* RegisterFieldType.swift in Sources */,
 				7F9A6B082D66CD8F00261C09 /* LoginFieldType.swift in Sources */,
 				7F9A6AE12D66CD8400261C09 /* MyPackageButton.swift in Sources */,
+				7FE20AF52D6D944E0099A96C /* RandomUI.swift in Sources */,
 				7F9A6AE22D66CD8400261C09 /* MyImage.swift in Sources */,
 				7F9A6AE32D66CD8400261C09 /* UserDefaultsKey.swift in Sources */,
 				7F9A6AE42D66CD8400261C09 /* MyPackageSwitch.swift in Sources */,
