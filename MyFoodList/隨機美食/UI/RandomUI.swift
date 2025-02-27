@@ -11,14 +11,15 @@ class RandomUI: UIView {
 
     private let logoImage = MyPackageImage()
     private let foodLabel = MyLabel()
-    private let infoButton = MyPackageButton()
+    
+    private let evaluateImage = EvaluateImageUI()
     
     private let priceLabel = MyLabel()
     private let addressTitleLabel = MyLabel()
     private let addressLabel = MyLabel()
     private let infoStack = MyStack()
     
-    private let infoImage = MyPackageButton()
+    private let infoButton = MyPackageButton()
     private let infoView = MyStack()
 
     private let randomButton = RandomButtonUI()
@@ -49,21 +50,24 @@ class RandomUI: UIView {
     
     var infoButtonAction: (() -> Void)? {
         didSet {
-            infoImage.buttonAction = infoButtonAction
+            infoButton.buttonAction = infoButtonAction
         }
     }
     
     func setShowInfo(isShow: Bool, food: String = "今天吃什麼？") {
         if isShow {
             infoView.isHidden = false
+            evaluateImage.isHidden = false
         }
 
         UIView.animate(withDuration: 0.3, animations: {
             self.infoView.alpha = isShow ? 1 : 0
-            
+            self.evaluateImage.alpha = isShow ? 1 : 0
+
         }) { _ in
             if !isShow {
                 self.infoView.isHidden = true
+                self.evaluateImage.isHidden = true
             }
         }
         
@@ -83,13 +87,18 @@ class RandomUI: UIView {
     
     private func setupUI(width: CGFloat, height: CGFloat){
         
+        let width = UIScreen.main.bounds.width
+        
         logoImage.setImage = .searchFood
-        logoImage.viewPadding(to: width * 0.025, top: width * 0.075, bottom: width * 0.075)
+        logoImage.viewPadding(to: width * 0.025, top: width * 0.075)
         
         foodLabel.text = "今天吃什麼？"
         foodLabel.font = UIFont.boldLargeTitle
-        foodLabel.padding(bottom: width * 0.05)
 
+        evaluateImage.setEvaluate = 5
+        evaluateImage.viewPadding(to: width * 0.025)
+        evaluateImage.isHidden = true
+        
         priceLabel.text = "價位：$0 ~ 1000"
         priceLabel.font = UIFont.boldHeadline
         priceLabel.textAlignment = .left
@@ -112,19 +121,20 @@ class RandomUI: UIView {
         infoStack.distribution = .fillEqually
         infoStack.translatesAutoresizingMaskIntoConstraints = false
         
-        infoImage.buttonText = ""
-        infoImage.buttonBackground = .clear
-        infoImage.buttonBackgroundImage = .goto
-        infoImage.viewPadding(to: width * 0.1, left: 0, right: width * 0.025)
+        infoButton.buttonText = ""
+        infoButton.buttonBackground = .clear
+        infoButton.buttonBackgroundImage = .goto
+        infoButton.viewPadding(to: width * 0.1, left: 0, right: width * 0.025)
         
-        infoView.addArrangedSubviews([infoStack, infoImage])
+        infoView.addArrangedSubviews([infoStack, infoButton])
         infoView.axis = .horizontal
         infoView.backgroundColor = .lightGrayWhite
         infoView.layer.cornerRadius = 10
+        infoView.isHidden = true
         infoView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             infoStack.widthAnchor.constraint(equalTo: infoView.widthAnchor, multiplier: 0.85),
-            infoImage.widthAnchor.constraint(equalTo: infoView.widthAnchor, multiplier: 0.15)
+            infoButton.widthAnchor.constraint(equalTo: infoView.widthAnchor, multiplier: 0.15)
         ])
         
         setShowInfo(isShow: false)
@@ -136,7 +146,7 @@ class RandomUI: UIView {
             setShowInfo(isShow: false)
         }
         
-        let subScreen = MyStack(arrangedSubviews: [logoImage, foodLabel, infoView, spacer, randomButton])
+        let subScreen = MyStack(arrangedSubviews: [logoImage, foodLabel, evaluateImage, infoView, spacer, randomButton])
         subScreen.alignment = .center
         subScreen.translatesAutoresizingMaskIntoConstraints = false
         
@@ -148,16 +158,19 @@ class RandomUI: UIView {
             subScreen.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             logoImage.widthAnchor.constraint(equalToConstant: width),
-            logoImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.365),
+            logoImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.3375),
             
             foodLabel.widthAnchor.constraint(equalToConstant: width),
-            foodLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.1),
+            foodLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.075),
 
+            evaluateImage.widthAnchor.constraint(equalToConstant: width * 0.55),
+            evaluateImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.075),
+            
             infoView.widthAnchor.constraint(equalToConstant: width * 0.85),
             infoView.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.175),
 
             spacer.widthAnchor.constraint(equalToConstant: width),
-            spacer.heightAnchor.constraint(lessThanOrEqualTo: subScreen.heightAnchor, multiplier: 0.4),
+            spacer.heightAnchor.constraint(lessThanOrEqualTo: subScreen.heightAnchor, multiplier: 0.3525),
 
             randomButton.widthAnchor.constraint(equalToConstant: width),
             randomButton.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.235)

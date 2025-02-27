@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F13A10D2D701F7000C1386C /* EvaluateImageUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A10C2D701F7000C1386C /* EvaluateImageUI.swift */; };
 		7F9A6A6D2D66CB8700261C09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6A612D66CB8700261C09 /* AppDelegate.swift */; };
 		7F9A6A6E2D66CB8700261C09 /* MyFoodList.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6A682D66CB8700261C09 /* MyFoodList.xcdatamodeld */; };
 		7F9A6A6F2D66CB8700261C09 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6A692D66CB8700261C09 /* SceneDelegate.swift */; };
@@ -75,6 +76,9 @@
 		7F9A6B072D66CD8F00261C09 /* RegisterFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AFB2D66CD8F00261C09 /* RegisterFieldType.swift */; };
 		7F9A6B082D66CD8F00261C09 /* LoginFieldType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6AF42D66CD8F00261C09 /* LoginFieldType.swift */; };
 		7F9A6B0C2D66CFF700261C09 /* AddFoodScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */; };
+		7FB758652D6ECBC100C7B4B5 /* HomeTitleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB758642D6ECBC100C7B4B5 /* HomeTitleUI.swift */; };
+		7FB758672D6EE57F00C7B4B5 /* FoodListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */; };
+		7FB7586F2D6EED5100C7B4B5 /* MyIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */; };
 		7FE20AEF2D6D4EA60099A96C /* RandomButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */; };
 		7FE20AF52D6D944E0099A96C /* RandomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE20AF42D6D944E0099A96C /* RandomUI.swift */; };
 		7FFF73322D6C3F050090E201 /* MyTabBarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */; };
@@ -91,6 +95,7 @@
 		144461F49635E2F032B0EED8 /* Pods_MyFoodList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFoodList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3DAA1961436AC05C472C8F /* Pods-MyFoodList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFoodList.debug.xcconfig"; path = "Target Support Files/Pods-MyFoodList/Pods-MyFoodList.debug.xcconfig"; sourceTree = "<group>"; };
 		65800DCE01194132BFE1080B /* Pods-MyFoodList.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFoodList.release.xcconfig"; path = "Target Support Files/Pods-MyFoodList/Pods-MyFoodList.release.xcconfig"; sourceTree = "<group>"; };
+		7F13A10C2D701F7000C1386C /* EvaluateImageUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateImageUI.swift; sourceTree = "<group>"; };
 		7F9A6A462D66CB8200261C09 /* MyFoodList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFoodList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9A6A612D66CB8700261C09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9A6A622D66CB8700261C09 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,6 +166,9 @@
 		7F9A6AFD2D66CD8F00261C09 /* RegisterFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterFieldUI.swift; sourceTree = "<group>"; };
 		7F9A6AFF2D66CD8F00261C09 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
 		7F9A6B0B2D66CFF700261C09 /* AddFoodScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFoodScreen.swift; sourceTree = "<group>"; };
+		7FB758642D6ECBC100C7B4B5 /* HomeTitleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleUI.swift; sourceTree = "<group>"; };
+		7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListCell.swift; sourceTree = "<group>"; };
+		7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIconLabel.swift; sourceTree = "<group>"; };
 		7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomButtonUI.swift; sourceTree = "<group>"; };
 		7FE20AF42D6D944E0099A96C /* RandomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUI.swift; sourceTree = "<group>"; };
 		7FFF73312D6C3F050090E201 /* MyTabBarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTabBarScreen.swift; sourceTree = "<group>"; };
@@ -201,6 +209,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7F13A10B2D701F3B00C1386C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				7F13A10C2D701F7000C1386C /* EvaluateImageUI.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		7F9A6A3D2D66CB8200261C09 = {
 			isa = PBXGroup;
 			children = (
@@ -229,6 +245,7 @@
 				7F9A6AA52D66CD8400261C09 /* MyTools */,
 				7F9A6ABC2D66CD8400261C09 /* AppTools */,
 				7F9A6A672D66CB8700261C09 /* Main.storyboard */,
+				7F13A10B2D701F3B00C1386C /* Shared */,
 				7F9A6AFA2D66CD8F00261C09 /* 登入 */,
 				7F9A6B002D66CD8F00261C09 /* 註冊 */,
 				7FFF73302D6C3EC20090E201 /* MyTabBar */,
@@ -255,6 +272,7 @@
 				7F9A6A7B2D66CD8400261C09 /* MyDivider.swift */,
 				7F9A6A7C2D66CD8400261C09 /* MyPackageSwitch.swift */,
 				7F9A6A7D2D66CD8400261C09 /* MyPackageControl.swift */,
+				7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -457,6 +475,8 @@
 		7F9A6AF12D66CD8F00261C09 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7FB758642D6ECBC100C7B4B5 /* HomeTitleUI.swift */,
+				7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -745,8 +765,11 @@
 				7F9A6AC52D66CD8400261C09 /* SignatureView.swift in Sources */,
 				7F9A6AC62D66CD8400261C09 /* MySymbol.swift in Sources */,
 				7FFF73322D6C3F050090E201 /* MyTabBarScreen.swift in Sources */,
+				7FB7586F2D6EED5100C7B4B5 /* MyIconLabel.swift in Sources */,
+				7F13A10D2D701F7000C1386C /* EvaluateImageUI.swift in Sources */,
 				7F9A6AC72D66CD8400261C09 /* ImageNameItem.swift in Sources */,
 				7F9A6AC82D66CD8400261C09 /* SwitchLanguage.swift in Sources */,
+				7FB758652D6ECBC100C7B4B5 /* HomeTitleUI.swift in Sources */,
 				7F9A6AC92D66CD8400261C09 /* MyLabel.swift in Sources */,
 				7F9A6ACA2D66CD8400261C09 /* Image+.swift in Sources */,
 				7F9A6ACB2D66CD8400261C09 /* SFSymbol.swift in Sources */,
@@ -799,6 +822,7 @@
 				7F9A6AED2D66CD8400261C09 /* URLSession+.swift in Sources */,
 				7F9A6AEE2D66CD8400261C09 /* MyImageButton.swift in Sources */,
 				7F9A6AEF2D66CD8400261C09 /* View+.swift in Sources */,
+				7FB758672D6EE57F00C7B4B5 /* FoodListCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

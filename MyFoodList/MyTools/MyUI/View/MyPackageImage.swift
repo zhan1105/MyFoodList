@@ -82,5 +82,7 @@ class MyPackageImage: UIView {
             newImage.leadingAnchor.constraint(equalTo: newPackageView.leadingAnchor, constant: self.padding.left),
             newImage.trailingAnchor.constraint(equalTo: newPackageView.trailingAnchor, constant: -self.padding.right)
         ])
+        
+        self.layoutSubviews()
     }
 }
