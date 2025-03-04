@@ -55,7 +55,7 @@ extension MyTabBarScreen {
         
         appTabBar.setTapAction(.AddFood) { [weak self] in
             guard let self = self else { return }
-            self.pushViewController(AddFoodScreen())
+            self.pushViewController(EditDetailScreen())
         }
         
         appTabBar.setTapAction(.Search) { [weak self] in

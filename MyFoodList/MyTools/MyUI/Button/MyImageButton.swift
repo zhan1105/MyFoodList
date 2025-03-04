@@ -20,6 +20,7 @@ class MyImageButton: UIButton {
     var setContentImage: UIImage? = nil {
         didSet {
             self.setImage(setContentImage, for: .normal)
+            self.setImage(setContentImage, for: .highlighted)
         }
     }
     

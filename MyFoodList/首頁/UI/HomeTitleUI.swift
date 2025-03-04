@@ -2,7 +2,7 @@
 //  HomeTitleUI.swift
 //  MyFoodList
 //
-//  Created by 紹郁 on 2025/2/26.
+//  Created by 紹郁 on 2025/2/27.
 //
 
 import UIKit
@@ -11,6 +11,13 @@ class HomeTitleUI: UIView {
 
     private let logoImage = MyPackageImage()
     private let titleLabel = MyLabel()
+    private let spacerImage = MyPackageImage()
+
+    var setTitle: String? = nil {
+        didSet {
+            titleLabel.text = setTitle
+        }
+    }
     
     init(){
         super.init(frame: .zero)
@@ -26,13 +33,14 @@ class HomeTitleUI: UIView {
         let width = UIScreen.main.bounds.width
         
         logoImage.setImage = .foodLogo
-        logoImage.viewPadding(to: width * 0.01)
+        logoImage.viewPadding(to: width * 0.025, right: 0)
         
         titleLabel.text = "XX的美食清單"
         titleLabel.font = .boldTitle2
-        titleLabel.textAlignment = .left
         
-        let subScreen = MyStack(arrangedSubviews: [logoImage, titleLabel])
+        spacerImage.viewPadding(to: width * 0.025, left: 0)
+        
+        let subScreen = MyStack(arrangedSubviews: [logoImage, titleLabel, spacerImage])
         subScreen.axis = .horizontal
         subScreen.setBackgroundImage = .titleBackground
         subScreen.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +52,9 @@ class HomeTitleUI: UIView {
             subScreen.leadingAnchor.constraint(equalTo: leadingAnchor),
             subScreen.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            logoImage.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.25),
-            titleLabel.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.75)
+            logoImage.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.15),
+            titleLabel.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.7),
+            spacerImage.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.15)
         ])
     }
 }

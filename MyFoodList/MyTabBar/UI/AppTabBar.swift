@@ -64,7 +64,7 @@ class AppTabBar: UIView {
         
         addFoodTabItem.buttonText = ""
         addFoodTabItem.buttonBackground = .clear
-        addFoodTabItem.buttonBackgroundImage = .addFood
+        addFoodTabItem.buttonImage = .addFood
         addFoodTabItem.viewPadding(to: width * 0.035)
         
         let subScreen = MyStack(arrangedSubviews: [foodListTabItem, locationTabItem, addFoodTabItem, searchTabItem, WhatToEatTabItem])

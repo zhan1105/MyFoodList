@@ -22,8 +22,12 @@ class MyPackageButton: UIView {
     }
     
     var buttonImage: UIImage? {
-        didSet {
-            button.setImage(buttonImage, for: .normal)
+        get {
+            button.image(for: .normal)
+        }
+        set {
+            button.setImage(newValue, for: .normal)
+            button.setImage(newValue, for: .highlighted)
             button.backgroundColor = .clear
         }
     }
@@ -44,6 +48,7 @@ class MyPackageButton: UIView {
     var buttonBackgroundImage: UIImage? = nil {
         didSet {
             button.setBackgroundImage(buttonBackgroundImage, for: .normal)
+            button.setBackgroundImage(buttonBackgroundImage, for: .highlighted)
         }
     }
     
