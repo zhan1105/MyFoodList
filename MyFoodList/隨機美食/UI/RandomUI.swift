@@ -95,7 +95,6 @@ class RandomUI: UIView {
         foodLabel.text = "今天吃什麼？"
         foodLabel.font = UIFont.boldLargeTitle
 
-        evaluateImage.setEvaluate = 5
         evaluateImage.viewPadding(to: width * 0.025)
         evaluateImage.isHidden = true
         

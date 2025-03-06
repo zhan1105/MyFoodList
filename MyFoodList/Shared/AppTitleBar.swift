@@ -64,7 +64,7 @@ class AppTitleBar: UIView {
         
         editButton.buttonText = ""
         editButton.buttonBackground = .clear
-        editButton.viewPadding(to: width * 0.075, top: width * 0.06, bottom: width * 0.06, left: 0)
+        editButton.viewPadding(to: width * 0.0025, left: width * 0.0375, right: width * 0.0375)
         
         let subScreen = MyStack(arrangedSubviews: [backButton, titleLabel, editButton])
         subScreen.axis = .horizontal

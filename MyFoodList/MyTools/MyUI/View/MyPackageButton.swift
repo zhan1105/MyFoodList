@@ -29,6 +29,7 @@ class MyPackageButton: UIView {
             button.setImage(newValue, for: .normal)
             button.setImage(newValue, for: .highlighted)
             button.backgroundColor = .clear
+            button.imageView?.contentMode = .scaleAspectFit
         }
     }
     

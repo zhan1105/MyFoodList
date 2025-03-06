@@ -9,11 +9,13 @@ import UIKit
 
 class EditDetailUI: UIView {
     
-    private let foodField =     FoodFieldUI()
-    private let phoneField =    FoodFieldUI()
-    private let addressField =  FoodFieldUI()
-    
+    private let foodField = FoodFieldUI()
+    private let phoneField = FoodFieldUI()
+    private let addressField = FoodFieldUI()
+    private let linkField = FoodFieldUI()
+
     private let priceField = PriceFieldUI()
+    private let coordinateField = CoordinateFieldUI()
 
     private var evaluateButton: EvaluateButtonUI!
     
@@ -24,14 +26,13 @@ class EditDetailUI: UIView {
     
     private let nextButton = MyPackageButton()
     
-    
-    
     var setDelegate: UITextFieldDelegate? = nil {
         didSet {
             foodField.setDelegate = setDelegate
             priceField.setDelegate = setDelegate
             phoneField.setDelegate = setDelegate
             addressField.setDelegate = setDelegate
+            coordinateField.setDelegate = setDelegate
         }
     }
     
@@ -63,6 +64,12 @@ class EditDetailUI: UIView {
             return phoneField.newTextField
         case .address:
             return addressField.newTextField
+        case .lat:
+            return coordinateField.latTextField
+        case .lng:
+            return coordinateField.lngTextField
+        case .link:
+            return linkField.newTextField
         }
     }
     
@@ -78,6 +85,12 @@ class EditDetailUI: UIView {
             return phoneField.fieldText
         case .address:
             return addressField.fieldText
+        case .lat:
+            return coordinateField.latFieldText
+        case .lng:
+            return coordinateField.lngFieldText
+        case .link:
+            return linkField.fieldText
         }
     }
     
@@ -93,6 +106,12 @@ class EditDetailUI: UIView {
             phoneField.fieldText = text
         case .address:
             addressField.fieldText = text
+        case .lat:
+            coordinateField.latFieldText = text
+        case .lng:
+            coordinateField.lngFieldText = text
+        case .link:
+            linkField.fieldText = text
         }
     }
     
@@ -131,13 +150,14 @@ class EditDetailUI: UIView {
         phoneField.setTitle = "電話："
         phoneField.setKeyboardType = .phonePad
         addressField.setTitle = "地址："
+        linkField.setTitle = "連結："
         
         evaluateButton = EvaluateButtonUI(spacing: width * 0.025)
         
         onePictureField.setTitle = "圖片1："
         twoPictureField.setTitle = "圖片2："
                 
-        let foodFields: [FoodFieldUI] = [foodField, phoneField, addressField]
+        let foodFields: [FoodFieldUI] = [foodField, phoneField, addressField, linkField]
         foodFields.forEach {
             $0.widthAnchor.constraint(equalToConstant: width * 0.825).isActive = true
             $0.heightAnchor.constraint(equalToConstant: height * 0.125).isActive = true
@@ -152,7 +172,7 @@ class EditDetailUI: UIView {
         let spacer = MySpacer()
         
         infoStack.addArrangedSubviews([spacer,
-                                       foodField, priceField, phoneField, addressField,
+                                       foodField, priceField, phoneField, addressField, coordinateField, linkField,
                                        evaluateButton,
                                        onePictureField, twoPictureField])
         infoStack.alignment = .center
@@ -165,6 +185,9 @@ class EditDetailUI: UIView {
             priceField.widthAnchor.constraint(equalToConstant: width * 0.825),
             priceField.heightAnchor.constraint(equalToConstant: height * 0.125),
 
+            coordinateField.widthAnchor.constraint(equalToConstant: width * 0.825),
+            coordinateField.heightAnchor.constraint(equalToConstant: height * 0.125),
+            
             evaluateButton.widthAnchor.constraint(equalToConstant: width * 0.825),
             evaluateButton.heightAnchor.constraint(equalToConstant: height * 0.15),
         ])
@@ -191,7 +214,7 @@ class EditDetailUI: UIView {
             topSpacer.heightAnchor.constraint(equalToConstant: height * 0.025),
 
             infoStack.widthAnchor.constraint(equalToConstant: width * 0.9),
-            infoStack.heightAnchor.constraint(equalToConstant: height * 1.25),
+            infoStack.heightAnchor.constraint(equalToConstant: height * 1.5),
             
             bottomSpacer.heightAnchor.constraint(equalToConstant: height * 0.025),
 

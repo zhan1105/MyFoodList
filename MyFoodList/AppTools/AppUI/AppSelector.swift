@@ -26,9 +26,27 @@ class AppSelector: UIView {
         }
     }
     
+    var fieldPlaceholder: String? {
+        get {
+            newTextField.placeholder
+        }
+        set {
+            newTextField.placeholder = newValue
+        }
+    }
+    
+    var fieldFont: UIFont? {
+        get {
+            newTextField.font
+        }
+        set {
+            newTextField.font = newValue
+        }
+    }
+    
     var isSelect: Bool = false {
         didSet {
-            borderColor = isSelect ? UIColor.oceanBlue.cgColor : UIColor.skyGray.cgColor
+            borderColor = isSelect ? select_BorderColor : unselect_BorderColor
             selectButton.setContentImage = isSelect ? .selectList : .unselectList
             newTextField.layer.borderColor = borderColor
             shouldShowError = false
@@ -44,13 +62,26 @@ class AppSelector: UIView {
     
     var onTapAction: (() -> Void)?
     
-    enum SelectorStyle {
-        case Selector
-        case User
+    private var borderColor: CGColor? = nil
+    var select_BorderColor: CGColor? = UIColor.oceanBlue.cgColor
+    var unselect_BorderColor: CGColor? = UIColor.skyGray.cgColor
+    
+    var setBorderColor: CGColor? {
+        get {
+            newTextField.layer.borderColor
+        }
+        set {
+            unselect_BorderColor = newValue
+            newTextField.layer.borderColor = unselect_BorderColor
+        }
     }
     
-    var borderColor: CGColor? = UIColor.skyGray.cgColor
-
+    var setCornerRadius: CGFloat = 0 {
+        didSet {
+            newTextField.layer.cornerRadius = setCornerRadius
+        }
+    }
+    
     var errorText: String? = nil {
         didSet {
             errorLabel.text = errorText
@@ -75,7 +106,7 @@ class AppSelector: UIView {
     }
     
     private func setupUI(){
-        
+                        
         selectButton.showsMenuAsPrimaryAction = true
         
         // 設定 TextField
@@ -87,6 +118,7 @@ class AppSelector: UIView {
         newTextField.layer.cornerRadius = 10
         newTextField.textAlignment = .left
         newTextField.isUserInteractionEnabled = false
+        newTextField.leftView = iconImage
         newTextField.leftViewMode = .never
         newTextField.rightView = selectButton
         newTextField.rightViewMode = .always

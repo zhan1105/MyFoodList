@@ -69,7 +69,6 @@ class FoodListCell: UITableViewCell {
         titleLabel.font = .boldTitle3
         titleLabel.textAlignment = .left
         
-        evaluateImage.setEvaluate = 5
         evaluateImage.viewPadding(to: width * 0.00375)
         
         titleStack.addArrangedSubviews([titleLabel, evaluateImage])

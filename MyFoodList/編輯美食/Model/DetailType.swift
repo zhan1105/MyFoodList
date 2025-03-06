@@ -13,4 +13,7 @@ enum DetailType {
     case maxPrice
     case phoneNumber
     case address
+    case lat
+    case lng
+    case link
 }

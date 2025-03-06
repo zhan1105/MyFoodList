@@ -25,7 +25,7 @@ class EvaluateButtonUI: UIView {
         didSet {
             let starButtons: [MyImageButton] = [oneStarButton, twoStarButton, threeStarButton, fourStarButton, fiveStarButton]
             starButtons.enumerated().forEach { index, starButton in
-                starButton.setContentImage = index <= setEvaluate ? .starSelected : .starUnSelected
+                starButton.setContentImage = index + 1 <= setEvaluate ? .starSelected : .starUnSelected
             }
         }
     }

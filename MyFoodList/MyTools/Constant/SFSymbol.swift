@@ -21,6 +21,8 @@ enum SFSymbol: String {
     case arrow_camera       = "arrow.triangle.2.circlepath.camera.fill"
     case arrow_down         = "arrow.down"
     case location           = "location.fill"
+    case search             = "magnifyingglass"
+    case ellipsis_fill      = "ellipsis.circle.fill"
 }
 
 extension UIImage {

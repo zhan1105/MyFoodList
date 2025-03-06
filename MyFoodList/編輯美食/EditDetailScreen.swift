@@ -62,44 +62,44 @@ extension EditDetailScreen {
         
         contentView.setStarButtonAction(0) { [weak self] in
             guard let self = self else { return }
-            self.evaluate = 0
+            self.evaluate = 1
             self.contentView.setEvaluate = evaluate
         }
         
         contentView.setStarButtonAction(1) { [weak self] in
             guard let self = self else { return }
-            self.evaluate = 1
+            self.evaluate = 2
             self.contentView.setEvaluate = evaluate
         }
         
         contentView.setStarButtonAction(2) { [weak self] in
             guard let self = self else { return }
-            self.evaluate = 2
+            self.evaluate = 3
             self.contentView.setEvaluate = evaluate
         }
         
         contentView.setStarButtonAction(3) { [weak self] in
             guard let self = self else { return }
-            self.evaluate = 3
+            self.evaluate = 4
             self.contentView.setEvaluate = evaluate
         }
         
         contentView.setStarButtonAction(4) { [weak self] in
             guard let self = self else { return }
-            self.evaluate = 4
+            self.evaluate = 5
             self.contentView.setEvaluate = evaluate
         }
         
         contentView.setUploadAction(0) { [weak self] in
             guard let self = self else { return }
             self.setUploadAction()
-            self.contentView.setUploadPicture(0, picture: .arrowUp)
+//            self.contentView.setUploadPicture(0, picture: .arrowUp)
         }
         
         contentView.setUploadAction(1) { [weak self] in
             guard let self = self else { return }
             self.setUploadAction()
-            self.contentView.setUploadPicture(1, picture: .arrowDown)
+//            self.contentView.setUploadPicture(1, picture: .arrowDown)
         }
         
         contentView.setNextButtonAction = { [weak self] in
@@ -150,6 +150,12 @@ extension EditDetailScreen: UITextFieldDelegate {
         case contentView.getTextField(.minPrice), contentView.getTextField(.maxPrice), contentView.getTextField(.phoneNumber):
             
             let allowedCharacters = CharacterSet(charactersIn: Characters)
+            let characterSet = CharacterSet(charactersIn: string)
+            return allowedCharacters.isSuperset(of: characterSet)
+            
+        case contentView.getTextField(.lat), contentView.getTextField(.lng):
+            
+            let allowedCharacters = CharacterSet(charactersIn: "\(Characters).")
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
         default:

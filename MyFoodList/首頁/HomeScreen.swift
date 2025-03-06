@@ -74,7 +74,7 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let index = indexPath.row
                 
-        
+        pushViewController(FoodDetailScreen())
     
         tableView.reloadData()
     }
