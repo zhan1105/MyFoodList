@@ -85,6 +85,7 @@
 		7FA5D0FE2D793E8E0004BF9F /* FoodDetailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5D0FD2D793E8E0004BF9F /* FoodDetailScreen.swift */; };
 		7FA5D1012D793FBA0004BF9F /* FoodDetailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5D1002D793FBA0004BF9F /* FoodDetailUI.swift */; };
 		7FA5D1032D794EC20004BF9F /* CoordinateFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5D1022D794EC20004BF9F /* CoordinateFieldUI.swift */; };
+		7FA5D10C2D79890E0004BF9F /* FireStoreCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5D10B2D79890E0004BF9F /* FireStoreCollection.swift */; };
 		7FB758652D6ECBC100C7B4B5 /* AppTitleBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB758642D6ECBC100C7B4B5 /* AppTitleBar.swift */; };
 		7FB758672D6EE57F00C7B4B5 /* FoodListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */; };
 		7FB7586F2D6EED5100C7B4B5 /* MyIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */; };
@@ -189,6 +190,7 @@
 		7FA5D0FD2D793E8E0004BF9F /* FoodDetailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailScreen.swift; sourceTree = "<group>"; };
 		7FA5D1002D793FBA0004BF9F /* FoodDetailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailUI.swift; sourceTree = "<group>"; };
 		7FA5D1022D794EC20004BF9F /* CoordinateFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateFieldUI.swift; sourceTree = "<group>"; };
+		7FA5D10B2D79890E0004BF9F /* FireStoreCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreCollection.swift; sourceTree = "<group>"; };
 		7FB758642D6ECBC100C7B4B5 /* AppTitleBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTitleBar.swift; sourceTree = "<group>"; };
 		7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListCell.swift; sourceTree = "<group>"; };
 		7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIconLabel.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				7F9A6AA52D66CD8400261C09 /* MyTools */,
 				7F9A6ABC2D66CD8400261C09 /* AppTools */,
 				7F9A6A672D66CB8700261C09 /* Main.storyboard */,
+				7FA5D10A2D7988DE0004BF9F /* FireStore */,
 				7F13A10B2D701F3B00C1386C /* Shared */,
 				7F9A6AFA2D66CD8F00261C09 /* 登入 */,
 				7F9A6B002D66CD8F00261C09 /* 註冊 */,
@@ -613,6 +616,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		7FA5D10A2D7988DE0004BF9F /* FireStore */ = {
+			isa = PBXGroup;
+			children = (
+				7FA5D10B2D79890E0004BF9F /* FireStoreCollection.swift */,
+			);
+			path = FireStore;
+			sourceTree = "<group>";
+		};
 		7FCAC52D2D76A8D6005E7171 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -927,6 +938,7 @@
 				7F9A6AEE2D66CD8400261C09 /* MyImageButton.swift in Sources */,
 				7F9A6AEF2D66CD8400261C09 /* View+.swift in Sources */,
 				7FB758672D6EE57F00C7B4B5 /* FoodListCell.swift in Sources */,
+				7FA5D10C2D79890E0004BF9F /* FireStoreCollection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

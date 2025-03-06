@@ -22,10 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** The partial text to autocomplete. */
 @property(nonatomic, copy) NSString *query;
 
-/** The @c GMSAutocompleteSessionToken to associate requests to a billing session. */
+/** The `GMSAutocompleteSessionToken` to associate requests to a billing session. */
 @property(nonatomic, nullable) GMSAutocompleteSessionToken *sessionToken;
 
-/** The @c GMSAutocompleteFilter to apply to the results. */
+/** The `GMSAutocompleteFilter` to apply to the results. */
 @property(nonatomic, nullable) GMSAutocompleteFilter *filter;
 
 /** Request initializer.

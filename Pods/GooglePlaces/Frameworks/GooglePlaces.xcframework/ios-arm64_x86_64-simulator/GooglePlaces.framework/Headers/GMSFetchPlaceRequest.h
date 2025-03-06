@@ -16,17 +16,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class GMSAutocompleteSessionToken;
 
+/** Request object to use with `GMSPlacesClient` to fetch a place. */
 @interface GMSFetchPlaceRequest : NSObject
 
 /**
- * Request object to use with |GMSPlacesClient| to fetch a place.
+ * Request object to use with `GMSPlacesClient` to fetch a place.
  *
- * @param placeID the ID of the place to be requested.
- * @param placeProperties the properties of the place to be requested. Must not be empty. An empty
+ * @param placeID The ID of the place to be requested.
+ * @param placeProperties The properties of the place to be requested. Must not be empty. An empty
  * list will result in an error when trying to send the request. Read more about <a
  * href="https://developers.google.com/maps/documentation/places/ios-sdk/place-data-fields">Place
  * Data Fields</a>.
- * @param sessionToken The |GMSAutocompleteSessionToken| to associate request to a billing session.
+ * @param sessionToken The `GMSAutocompleteSessionToken` to associate request to a billing session.
  */
 - (instancetype)initWithPlaceID:(NSString *)placeID
                 placeProperties:(NSArray<GMSPlaceProperty> *)placeProperties
@@ -40,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, readonly) NSString *placeID;
 
 /**
- * Place properties to include in the GMSPlace response. Must not be empty. An empty list will
+ * Place properties to include in the `GMSPlace` response. Must not be empty. An empty list will
  * result in an error when trying to send the request.
  */
 @property(nonatomic, copy, readonly) NSArray<GMSPlaceProperty> *placeProperties;

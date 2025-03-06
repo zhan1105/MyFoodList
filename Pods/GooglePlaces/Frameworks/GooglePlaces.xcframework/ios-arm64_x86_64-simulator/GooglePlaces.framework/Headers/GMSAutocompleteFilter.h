@@ -83,7 +83,7 @@ typedef NS_ENUM(NSInteger, GMSPlacesAutocompleteTypeFilter) {
  * types.
  *
  * NOTE: This API can take an array of up to 5 entries.
- * If you are using GMSAutocompleteRequest, this API can take types from <a
+ * If you are using `GMSAutocompleteRequest`, this API can take types from <a
  * href="https://developers.google.com/maps/documentation/places/ios-sdk/place-types">table_A</a>.
  * Otherwise, take data from <a
  * href="https://developers.google.com/maps/documentation/places/ios-sdk/supported_types#table1">table_1</a>

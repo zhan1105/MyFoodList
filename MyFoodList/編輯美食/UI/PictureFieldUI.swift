@@ -10,7 +10,8 @@ import UIKit
 class PictureFieldUI: UIView {
 
     private let titleLabel = MyLabel()
-    private let pictureButton = MyPackageButton()
+    private let backgroundImage = MyImage()
+    private let pictureButton = MyButton()
     
     var setTitle: String? = nil {
         didSet {
@@ -20,7 +21,8 @@ class PictureFieldUI: UIView {
     
     var setContentImage: UIImage? = nil {
         didSet {
-            pictureButton.buttonImage = setContentImage
+            pictureButton.setImage(setContentImage, for: .normal)
+            pictureButton.setImage(setContentImage, for: .highlighted)
         }
     }
     
@@ -31,11 +33,11 @@ class PictureFieldUI: UIView {
     }
     
     var isUsingDefaultImage: Bool {
-        return pictureButton.buttonImage == .picture
+        return pictureButton.imageView?.image == .picture
     }
     
     func getContentImage() -> UIImage? {
-        if let image = pictureButton.buttonImage {
+        if let image = pictureButton.imageView?.image {
             return image
         } else {
             return nil
@@ -56,14 +58,18 @@ class PictureFieldUI: UIView {
         titleLabel.font = .boldHeadline
         titleLabel.textAlignment = .left
         
-        pictureButton.buttonText = ""
-        pictureButton.buttonImage = .picture
-        pictureButton.buttonBackgroundImage = .uploadfilesDefault
-        pictureButton.viewPadding()
+        backgroundImage.image = .uploadfilesDefault
+        backgroundImage.contentMode = .scaleToFill
+        backgroundImage.addSubview(pictureButton)
+        backgroundImage.isUserInteractionEnabled = true
         
+        pictureButton.setImage(.picture, for: .normal)
+        pictureButton.setImage(.picture, for: .highlighted)
+        pictureButton.backgroundColor = .clear
+
         let spacer = MySpacer()
         
-        let subScreen = MyStack(arrangedSubviews: [titleLabel, pictureButton, spacer])
+        let subScreen = MyStack(arrangedSubviews: [titleLabel, backgroundImage, spacer])
         subScreen.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(subScreen)
@@ -74,7 +80,13 @@ class PictureFieldUI: UIView {
             subScreen.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             titleLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.15),
-            pictureButton.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.75),
+            backgroundImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.75),
+            
+            pictureButton.topAnchor.constraint(equalTo: backgroundImage.topAnchor),
+            pictureButton.bottomAnchor.constraint(equalTo: backgroundImage.bottomAnchor),
+            pictureButton.leadingAnchor.constraint(equalTo: backgroundImage.leadingAnchor),
+            pictureButton.trailingAnchor.constraint(equalTo: backgroundImage.trailingAnchor),
+            
             spacer.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.1)
         ])
     }

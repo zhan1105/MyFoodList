@@ -7,8 +7,9 @@
 
 import UIKit
 import CoreData
-//import Firebase
 import GoogleMaps
+import FirebaseCore
+import FirebaseFirestore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         GMSServices.provideAPIKey(AppDelegate.googleApiKey)
-//        FirebaseApp.configure()
+        
+        // 初始化 Firebase
+        FirebaseApp.configure()
+        
+        let db = Firestore.firestore()
+        
         return true
     }
 

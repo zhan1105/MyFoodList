@@ -24,8 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
  * These are provided as a NSAttributedString, which may contain hyperlinks to the website of each
  * provider.
  *
- * In general, these must be shown to the user if data from this GMSPlacePhotoMetadata is shown, as
- * described in the Places SDK Terms of Service.
+ * In general, these must be shown to the user if data from this `GMSPlacePhotoMetadata` is shown,
+ * as described in the Places SDK Terms of Service.
  */
 @property(nonatomic, readonly, copy, nullable) NSAttributedString *attributions;
 

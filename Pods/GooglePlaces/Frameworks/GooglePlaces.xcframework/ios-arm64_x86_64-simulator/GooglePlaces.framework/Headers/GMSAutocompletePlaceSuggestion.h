@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The full description of the suggestion as a NSAttributedString. E.g., "Sydney Opera House,
  * Sydney, New South Wales, Australia".
  *
- * Every text range that matches the user input has a @c kGMSAutocompleteMatchAttribute.  For
+ * Every text range that matches the user input has a `kGMSAutocompleteMatchAttribute`.  For
  * example, you can make every match bold using enumerateAttribute:
  * <pre>
  *   UIFont *regularFont = [UIFont systemFontOfSize:[UIFont labelFontSize]];
@@ -44,8 +44,8 @@ NS_ASSUME_NONNULL_BEGIN
  * The primary text of a suggestion as a NSAttributedString, usually the name of the place.
  * E.g. "Sydney Opera House".
  *
- * Text ranges that match user input have a @c kGMSAutocompleteMatchAttribute,
- * like @c attributedFullText.
+ * Text ranges that match user input have a `kGMSAutocompleteMatchAttribute`,
+ * like `attributedFullText`.
  */
 @property(nonatomic, copy, readonly) NSAttributedString *attributedPrimaryText;
 
@@ -53,10 +53,10 @@ NS_ASSUME_NONNULL_BEGIN
  * The secondary text of a suggestion as a NSAttributedString, usually the location of the place.
  * E.g. "Sydney, New South Wales, Australia".
  *
- * Text ranges that match user input have a @c kGMSAutocompleteMatchAttribute, like
- * @c attributedFullText.
+ * Text ranges that match user input have a `kGMSAutocompleteMatchAttribute`, like
+ * `attributedFullText`.
  *
- * May be @c nil.
+ * May be `nil`.
  */
 @property(nonatomic, copy, readonly, nullable) NSAttributedString *attributedSecondaryText;
 
@@ -74,7 +74,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  * The straight line distance in meters between the origin and this suggestion if a valid origin is
- * specified in the @c GMSAutocompleteFilter of the request.
+ * specified in the `GMSAutocompleteFilter` of the request.
  */
 @property(nonatomic, readonly, nullable) NSNumber *distanceMeters;
 

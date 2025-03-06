@@ -15,12 +15,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class GMSPlaceAuthorAttribution;
 
+/** This class represents a single place review. */
 @interface GMSPlaceReview : NSObject
 
 /**
- * Instantiates a |GMSPlaceReview| with detail properties.
+ * Instantiates a `GMSPlaceReview` with detail properties.
  *
- * @param publishDate The |NSDate| the review was published.
+ * @param publishDate The `NSDate` the review was published.
  * @param relativePublishDateDescription The description of the publish date relative to the time of
  * the request.
  * @param text The localized text of the review.
@@ -28,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
  * @param originalText The review text in its original language.
  * @param originalTextLanguageCode The language code the review was originally written in.
  * @param rating The 0.0 - 5.0 rating associated with the review.
- * @param authorAttribution The |GMSPlaceAuthorAttribution| of the review's author.
+ * @param authorAttribution The `GMSPlaceAuthorAttribution` of the review's author.
  */
 - (instancetype)initWithPublishDate:(NSDate *)publishDate
      relativePublishDateDescription:(nullable NSString *)relativePublishDateDescription
@@ -39,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
                              rating:(float)rating
                   authorAttribution:(nullable GMSPlaceAuthorAttribution *)authorAttribution;
 
-/** The |NSDate| the review was published. */
+/** The `NSDate` the review was published. */
 @property(nonatomic, copy, readonly) NSDate *publishDate;
 
 /**

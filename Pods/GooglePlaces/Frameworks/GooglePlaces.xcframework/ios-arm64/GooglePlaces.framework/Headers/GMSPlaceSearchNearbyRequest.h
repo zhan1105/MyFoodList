@@ -27,15 +27,16 @@ typedef NS_ENUM(NSInteger, GMSPlaceSearchNearbyRankPreference) {
 
 NS_ASSUME_NONNULL_BEGIN
 
+/** Request object to use with `GMSPlacesClient` to fetch nearby places. */
 @interface GMSPlaceSearchNearbyRequest : NSObject
 
 /**
- * Instantiates a |GMSPlaceSearchNearbyRequest| with a location restriction and place properties to
+ * Instantiates a `GMSPlaceSearchNearbyRequest` with a location restriction and place properties to
  * return.
  *
  * @param locationRestriction The region to search specified as a circle, defined by center point
  * and radius in meters.
- * @param placeProperties The array of |GMSPlaceProperty| that should be included in place results.
+ * @param placeProperties The array of `GMSPlaceProperty` that should be included in place results.
  * Must not be empty. An empty list will result in an error when trying to send the request.
  */
 - (instancetype)initWithLocationRestriction:(id<GMSPlaceLocationRestriction>)locationRestriction
@@ -49,13 +50,13 @@ NS_ASSUME_NONNULL_BEGIN
  * The region to search specified as a circle, defined by center point and radius in meters. The
  * radius must be between 0.0 and 50000.0, inclusive. Breaking this restriction will result in an
  * INVALID_ARGUMENT error. The locationRestriction must be specified with
- * @c GMSPlaceCircularLocationOption. Using @c GMSPlaceRectangularLocationOption will result in an
+ * `GMSPlaceCircularLocationOption`. Using `GMSPlaceRectangularLocationOption` will result in an
  * INVALID_REQUEST error.
  */
 @property(nonatomic, copy) id<GMSPlaceLocationRestriction> locationRestriction;
 
 /**
- * The array of @c GMSPlaceProperty that should be included in place results. Must not be empty. An
+ * The array of `GMSPlaceProperty` that should be included in place results. Must not be empty. An
  * empty list will result in an error when trying to send the request.
  */
 @property(nonatomic, copy) NSArray<GMSPlaceProperty> *placeProperties;
@@ -96,7 +97,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, nullable) NSArray<NSString *> *excludedPrimaryTypes;
 
 /**
- * The maximum number of @c GMSPlace results to return. Must be between 1 and 20 (default)
+ * The maximum number of `GMSPlace` results to return. Must be between 1 and 20 (default)
  * inclusive. Breaking this restriction will result in an error returned. */
 @property(nonatomic) NSInteger maxResultCount;
 
@@ -108,8 +109,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, nullable) NSString *regionCode;
 
 /**
- * The @c GMSPlaceSearchNearbyRankPreference used to sort the results returned from the request.
- * The default value is @c GMSPlaceSearchNearbyRankPopularity.
+ * The `GMSPlaceSearchNearbyRankPreference` used to sort the results returned from the request.
+ * The default value is `GMSPlaceSearchNearbyRankPopularity`.
  */
 @property(nonatomic) GMSPlaceSearchNearbyRankPreference rankPreference;
 

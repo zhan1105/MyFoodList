@@ -16,6 +16,8 @@
 #import <GooglePlaces/GMSPlace.h>
 #import <GooglePlaces/GMSPlaceAuthorAttribution.h>
 #import <GooglePlaces/GMSPlaceFieldMask.h>
+#import <GooglePlaces/GMSPlaceIsOpenRequest.h>
+#import <GooglePlaces/GMSPlaceIsOpenResponse.h>
 #import <GooglePlaces/GMSPlaceLikelihood.h>
 #import <GooglePlaces/GMSPlaceLikelihoodList.h>
 #import <GooglePlaces/GMSPlaceLocationOptions.h>
@@ -28,6 +30,7 @@
 #import <GooglePlaces/GMSPlaceSpecialDay.h>
 #import <GooglePlaces/GMSPlaceTypes.h>
 #import <GooglePlaces/GMSPlaceViewportInfo.h>
+#import <GooglePlaces/GMSPlacesAppCheckTokenProvider.h>
 #import <GooglePlaces/GMSPlacesClient.h>
 #import <GooglePlaces/GMSPlacesDeprecationUtils.h>
 #import <GooglePlaces/GMSPlacesErrors.h>

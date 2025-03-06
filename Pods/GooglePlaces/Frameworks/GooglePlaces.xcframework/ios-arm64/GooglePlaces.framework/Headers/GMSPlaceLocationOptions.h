@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Protocol for specifying that the location can be used as search bias. */
 @protocol GMSPlaceLocationBias <NSObject, NSCopying>
 
-/** Returns the location bias as |NSURLQueryItem|. */
+/** Returns the location bias as `NSURLQueryItem`. */
 - (NSURLQueryItem *)locationBiasURLQueryItem;
 
 @end
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** Protocol for specifying that the location can be used as search restriction. */
 @protocol GMSPlaceLocationRestriction <NSObject, NSCopying>
 
-/** Returns the location restriction as |NSURLQueryItem|. */
+/** Returns the location restriction as `NSURLQueryItem`. */
 - (NSURLQueryItem *)locationRestrictionURLQueryItem;
 
 @end

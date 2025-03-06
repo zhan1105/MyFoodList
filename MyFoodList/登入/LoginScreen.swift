@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
 
 class LoginScreen: MyViewController {
     
     private let loginField = LoginFieldUI()
     private let loginButton = LoginButtonUI()
+
+    private let db = Firestore.firestore()
+    
+    private var account = String()
+    private var password = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +51,10 @@ class LoginScreen: MyViewController {
                 loginField.showErrorMessage(textFieldType, isShow: false)
             }
             
-            //TODO: - 登入驗證FireStore
+            account = loginField.getFieldText(.account) ?? ""
+            password = loginField.getFieldText(.password) ?? ""
+            
+            Task { await LoginFireStore() }
         }
     }
 }
@@ -111,3 +121,36 @@ extension LoginScreen: UITextFieldDelegate {
     }
 }
 
+//MARK: - FireStore
+extension LoginScreen {
+    private func LoginFireStore() async {
+        
+        showLoading()
+        
+        do {
+            let data = try await db.collection("Login")
+                .whereField("Account", isEqualTo: account) // 搜尋 Account
+                .getDocuments()
+            
+            guard let document = data.documents.first else {
+                self.showMessage("帳號不存在")
+                return
+            }
+            
+            let userData = document.data()
+            let userPassword = userData["Password"] as? String ?? ""
+            
+            if userPassword == password {
+                self.pushViewController(MyTabBarScreen())
+            } else {
+                self.showMessage("密碼錯誤")
+            }
+            
+        } catch {
+            self.showMessage("登入失敗：\(error.localizedDescription)")
+            self.MyPrint("登入失敗：\(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+}

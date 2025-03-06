@@ -30,15 +30,15 @@ typedef NS_ENUM(NSInteger, GMSPlaceSearchByTextRankPreference) {
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** Represents a text search request definition to be sent via |GMSPlacesClient|. */
+/** Represents a text search request definition to be sent via `GMSPlacesClient`. */
 
 @interface GMSPlaceSearchByTextRequest : NSObject
 
 /**
- * Instantiates a |GMSPlaceSearchByTextRequest| with a text query and place properties to return.
+ * Instantiates a `GMSPlaceSearchByTextRequest` with a text query and place properties to return.
  *
  * @param textQuery The string query for the search request.
- * @param placeProperties The array of |GMSPlaceProperty| that should be included in place results.
+ * @param placeProperties The array of `GMSPlaceProperty` that should be included in place results.
  * Must not be empty. An empty list will result in an error when trying to send the request.
  */
 - (instancetype)initWithTextQuery:(NSString *)textQuery
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  * The minimum average user rating for places to be included in the results.
  * Rating will be within a range between 0.0 and 5.0.
  *
- * <p>The specified rating will be rounded up to the nearest 0.5. See |GMSPlace| rating property.
+ * <p>The specified rating will be rounded up to the nearest 0.5. See `GMSPlace` rating property.
  * <p>Defaults to 0.0.
  */
 @property(nonatomic) float minRating;
@@ -81,11 +81,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic) BOOL isOpenNow;
 
-/** The array of |GMSPlaceProperty| that should be included in place results. */
+/** The array of `GMSPlaceProperty` that should be included in place results. */
 @property(nonatomic, readonly) NSArray<GMSPlaceProperty> *placeProperties;
 
 /**
- * An Array of the |GMSPlacesPriceLevel| values that should filter the places included
+ * An Array of the `GMSPlacesPriceLevel` values that should filter the places included
  * in the results.
  *
  * <p>Any combination of price levels can be selected; default is
@@ -93,7 +93,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic, nullable) NSArray<NSNumber *> *priceLevels;
 
-/** The |GMSPlaceSearchByTextRankPreference| used to sort the results returned from the request. */
+/** The `GMSPlaceSearchByTextRankPreference` used to sort the results returned from the request. */
 @property(nonatomic) GMSPlaceSearchByTextRankPreference rankPreference;
 
 /**
@@ -108,7 +108,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, copy, nullable) NSString *regionCode;
 
 /**
- * Defines whether only results of |includedType|
+ * Defines whether only results of `includedType`
  * should be returned.
  *
  * <p>Default value is false.
@@ -137,7 +137,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  * <p>A locationRestriction or a locationBias must be set when performing a search request.
  * <p>Cannot be used with locationBias.
- * <p>The locationRestriction for text search only supports GMSPlaceRectangularLocationOption.
+ * <p>The locationRestriction for text search only supports `GMSPlaceRectangularLocationOption`.
  */
 @property(nonatomic, nullable) id<GMSPlaceLocationRestriction> locationRestriction;
 

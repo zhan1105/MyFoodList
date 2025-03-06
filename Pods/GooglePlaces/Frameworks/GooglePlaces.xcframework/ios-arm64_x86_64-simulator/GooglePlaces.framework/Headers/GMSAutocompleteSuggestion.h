@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** This class represents a suggestion of a full query based on a partially typed string. */
 @interface GMSAutocompleteSuggestion : NSObject
 
-/** @c GMSAutocompletePlaceSuggestion based on a partially typed string. */
+/** `GMSAutocompletePlaceSuggestion` based on a partially typed string. */
 @property(nonatomic, nullable) GMSAutocompletePlaceSuggestion *placeSuggestion;
 
 @end

@@ -15,18 +15,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/** Request object to use with `GMSPlacesClient` to fetch a photo. */
 @interface GMSFetchPhotoRequest : NSObject
 
 /**
- * Request object to use with |GMSPlacesClient| to fetch a photo.
+ * Request object to use with `GMSPlacesClient` to fetch a photo.
  *
- * @param photoMetadata |GMSPlacePhotoMetadata| The maximum desired size in pixels
+ * @param photoMetadata `GMSPlacePhotoMetadata` The maximum desired size in pixels
  * of the image returned by the Place Photos service.
- * @param maxSize |CGSize| The photo metadata to request.
+ * @param maxSize `CGSize` The photo metadata to request.
  * If the image is smaller than the values specified, the original image will be returned. If the
  * image is larger in either dimension, it will be scaled to match the smaller of the two
  * dimensions, restricted to its original aspect ratio. CGSize height and width should be set to an
- * integer between 1 and 4800. If not, the |GMSPlacesClient| request callback will return an error.
+ * integer between 1 and 4800. If not, the `GMSPlacesClient` request callback will return an error.
  */
 
 - (instancetype)initWithPhotoMetadata:(GMSPlacePhotoMetadata *)photoMetadata
