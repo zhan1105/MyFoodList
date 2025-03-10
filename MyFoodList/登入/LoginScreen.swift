@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import FirebaseFirestore
+import LocalAuthentication
 
 class LoginScreen: MyViewController {
     
@@ -18,11 +19,18 @@ class LoginScreen: MyViewController {
     
     private var account = String()
     private var password = String()
+    private var faceID = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+        
+        let isSetFaceID = UserDefaults.standard.bool(forKey: UserDefaultsKey.isSetFaceID.rawValue)
+       
+        if isSetFaceID {
+            verify_FaceID()
+        }
     }
     
     private func verify(){
@@ -57,6 +65,57 @@ class LoginScreen: MyViewController {
             Task { await LoginFireStore() }
         }
     }
+    
+    
+    private func verify_FaceID() {
+        
+        let context = LAContext()
+        var error: NSError?
+        var message = String()
+        
+        // 檢查是否支持生物識別（Face ID 或 Touch ID）
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            let reason = "使用 Face ID 進行身份驗證"
+            
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                DispatchQueue.main.async { [self] in
+                    if success {
+                        // 認證成功，獲取回傳ID，轉換為 String
+                        if let policyDomainState = context.evaluatedPolicyDomainState {
+                            faceID = policyDomainState.base64EncodedString()
+                                                
+                            Task { await LoginFireStore_FaceID() }
+                        }
+                    } else {
+                        // 認證失敗，顯示錯誤信息
+                        if let error = authenticationError as? LAError {
+                            switch error.code {
+                            case .appCancel:
+                                message = "應用程式取消認證"
+                            case .userCancel:
+                                message = "用戶取消認證"
+                            case .authenticationFailed:
+                                message = "認證失敗"
+                            case .biometryNotEnrolled:
+                                message = "未設定 Face ID 或 Touch ID"
+                            case .biometryLockout:
+                                message = "生物識別被鎖定，需要用戶解鎖"
+                            default:
+                                message = "未知的錯誤"
+                            }
+                        }
+                        showMessage(message)
+                    }
+                }
+            }
+        } else {
+            // 不支持生物識別，顯示相應的錯誤信息
+            if let error = error {
+                message = "生物識別不可用: \(error.localizedDescription)"
+            }
+        }
+    }
+
 }
 
 //MARK: - UI
@@ -69,8 +128,10 @@ extension LoginScreen {
         
         loginButton.faceIDButtonAction = { [weak self] in
             guard let self = self else { return }
-        
+            
+            self.verify_FaceID()
         }
+        
         loginButton.registerButtonAction = { [weak self] in self?.pushViewController(RegisterScreen()) }
         
         let appScreen = MyStack(arrangedSubviews: [loginField, loginButton])
@@ -143,6 +204,11 @@ extension LoginScreen {
             let userPassword = userData["Password"] as? String ?? ""
             
             if userPassword == password {
+                
+                let documentID = document.documentID
+                UserDefaults.standard.set(documentID, forKey: UserDefaultsKey.user_id.rawValue)
+                UserDefaults.standard.set(true, forKey: UserDefaultsKey.isLogin.rawValue)
+                
                 self.pushViewController(MyTabBarScreen())
             } else {
                 self.showMessage("密碼錯誤")
@@ -155,4 +221,36 @@ extension LoginScreen {
         
         dismissLoading()
     }
+    
+    private func LoginFireStore_FaceID() async {
+        
+        showLoading()
+        
+        do {
+            let data = try await db.collection("Login")
+                .whereField("FaceID", isEqualTo: faceID) // 搜尋 Account
+                .getDocuments()
+            
+            guard let document = data.documents.first else {
+                self.showMessage("FaceID不存在")
+                
+                dismissLoading()
+                return
+            }
+            
+            let documentID = document.documentID
+            UserDefaults.standard.set(documentID, forKey: UserDefaultsKey.user_id.rawValue)
+            UserDefaults.standard.set(true, forKey: UserDefaultsKey.isLogin.rawValue)
+
+            self.pushViewController(MyTabBarScreen())
+            
+        } catch {
+            self.showMessage("登入失敗：\(error.localizedDescription)")
+            self.MyPrint("登入失敗：\(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+
+    
 }

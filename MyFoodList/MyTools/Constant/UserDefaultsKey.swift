@@ -9,4 +9,11 @@ import Foundation
 
 enum UserDefaultsKey: String {
     case none
+    
+    //MARK: - Login
+    case isLogin
+    case isSetFaceID
+
+    //MARK: - Member
+    case user_id
 }

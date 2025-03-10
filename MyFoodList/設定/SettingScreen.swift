@@ -48,14 +48,21 @@ extension SettingScreen {
         optionTable.register(SettingOptionCell.self, forCellReuseIdentifier: "SettingOptionCell")
         optionTable.separatorStyle = .none
         optionTable.backgroundColor = .clear
+        optionTable.isScrollEnabled = false
         optionTable.translatesAutoresizingMaskIntoConstraints = false
         
         let spacer = MySpacer()
         
         logoutButton.buttonText = "登出"
-        logoutButton.textColor = .coralRed
-        logoutButton.buttonBackground = .pureWhite
+        logoutButton.textColor = .pureWhite
+        logoutButton.buttonBackground = .coralRed
         logoutButton.viewPadding(to: width * 0.05, top: 0, bottom: width * 0.075)
+        logoutButton.buttonAction = { [weak self] in
+            guard let self = self else { return }
+            
+            UserDefaults.standard.set(false, forKey: UserDefaultsKey.isLogin.rawValue)
+            self.clearToViewController(LoginScreen())
+        }
         
         let appScreen = MyStack(arrangedSubviews: [titleBar, userInfo, settingLabel, optionTable, spacer, logoutButton])
         appScreen.translatesAutoresizingMaskIntoConstraints = false
