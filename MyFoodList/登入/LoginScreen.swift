@@ -134,6 +134,8 @@ extension LoginScreen {
             
             guard let document = data.documents.first else {
                 self.showMessage("帳號不存在")
+                
+                dismissLoading()
                 return
             }
             

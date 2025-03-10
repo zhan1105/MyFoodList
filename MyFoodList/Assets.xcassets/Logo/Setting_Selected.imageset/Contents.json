@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Search_Not_Selected.png",
+      "filename" : "Setting_Selected.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Search_Not_Selected 1.png",
+      "filename" : "Setting_Selected 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Search_Not_Selected 2.png",
+      "filename" : "Setting_Selected 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -23,9 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 初始化 Firebase
         FirebaseApp.configure()
-        
-        let db = Firestore.firestore()
-        
+                
         return true
     }
 

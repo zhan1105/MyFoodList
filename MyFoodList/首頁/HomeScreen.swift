@@ -26,6 +26,13 @@ class HomeScreen: MyViewController {
 extension HomeScreen {
     private func setupUI() {
 
+        titleBar.setSearchButtonAction = { [weak self] in
+            guard let self = self else { return }
+            let searchAlert = SearchAlert()
+            searchAlert.searchDelegate = self
+            self.overlayAlert(searchAlert)
+        }
+        
         foodListTable.register(FoodListCell.self, forCellReuseIdentifier: "FoodListCell")
         foodListTable.separatorStyle = .none
         foodListTable.backgroundColor = .clear
@@ -77,5 +84,14 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
         pushViewController(FoodDetailScreen())
     
         tableView.reloadData()
+    }
+}
+
+//MARK: - SearchDelegate
+extension HomeScreen: SearchDelegate {
+    func showSearchAlert() { }
+    
+    func search(text: String) {
+        MyPrint("123")
     }
 }

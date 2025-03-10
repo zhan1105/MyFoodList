@@ -44,12 +44,12 @@ class AppTabItem: UIView {
             case .Location:
                 image = .locationNotSelected
                 itemText = "附記美食"
-            case .Search:
-                image = .searchNotSelected
-                itemText = "搜尋"
             case .WhatToEat:
                 image = .whatToEatNotSelected
                 itemText = "吃啥？"
+            case .Setting:
+                image = .settingNotSelected
+                itemText = "設定"
             default:
                 break
             }

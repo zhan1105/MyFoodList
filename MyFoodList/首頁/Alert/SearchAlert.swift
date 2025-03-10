@@ -26,9 +26,7 @@ class SearchAlert: MyViewController {
 //MARK: - UI
 extension SearchAlert {
     func setupUI() {
-        
-        let width = UIScreen.main.bounds.width
-        
+                
         titleBar.setTitle = "搜尋"
         titleBar.backgroundColor = .pureWhite
         titleBar.setEditButtonImage = .menuCircle

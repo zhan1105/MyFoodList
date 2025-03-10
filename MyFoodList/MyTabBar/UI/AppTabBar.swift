@@ -12,8 +12,8 @@ class AppTabBar: UIView {
     private let foodListTabItem     = AppTabItem(.FoodList)
     private let locationTabItem     = AppTabItem(.Location)
     private let addFoodTabItem      = MyPackageButton()
-    private let searchTabItem       = AppTabItem(.Search)
-    private let WhatToEatTabItem    = AppTabItem(.WhatToEat)
+    private let whatToEatTabItem    = AppTabItem(.WhatToEat)
+    private let settingTabItem      = AppTabItem(.Setting)
     
     var selectTab: TabBarType = .FoodList {
         didSet {
@@ -23,10 +23,10 @@ class AppTabBar: UIView {
                     foodListTabItem.setIcon = item == selectTab ? .foodListSelected : .foodListNotSelected
                 case .Location:
                     locationTabItem.setIcon = item == selectTab ? .locationSelected : .locationNotSelected
-                case .Search:
-                    searchTabItem.setIcon = item == selectTab ? .searchSelected : .searchNotSelected
                 case .WhatToEat:
-                    WhatToEatTabItem.setIcon = item == selectTab ? .whatToEatSelected : .whatToEatNotSelected
+                    whatToEatTabItem.setIcon = item == selectTab ? .whatToEatSelected : .whatToEatNotSelected
+                case .Setting:
+                    settingTabItem.setIcon = item == selectTab ? .settingSelected : .settingNotSelected
                 default:
                     break
                 }
@@ -42,10 +42,10 @@ class AppTabBar: UIView {
             locationTabItem.onTapAction = onTapAction
         case.AddFood:
             addFoodTabItem.buttonAction = onTapAction
-        case .Search:
-            searchTabItem.onTapAction = onTapAction
         case .WhatToEat:
-            WhatToEatTabItem.onTapAction = onTapAction
+            whatToEatTabItem.onTapAction = onTapAction
+        case .Setting:
+            settingTabItem.onTapAction = onTapAction
         }
     }
     
@@ -67,7 +67,7 @@ class AppTabBar: UIView {
         addFoodTabItem.buttonImage = .addFood
         addFoodTabItem.viewPadding(to: width * 0.035)
         
-        let subScreen = MyStack(arrangedSubviews: [foodListTabItem, locationTabItem, addFoodTabItem, searchTabItem, WhatToEatTabItem])
+        let subScreen = MyStack(arrangedSubviews: [foodListTabItem, locationTabItem, addFoodTabItem, whatToEatTabItem, settingTabItem])
         subScreen.axis = .horizontal
         subScreen.backgroundColor = .lightSkyWhite
         subScreen.distribution = .fillEqually

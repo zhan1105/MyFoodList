@@ -14,8 +14,8 @@ class MyTabBarScreen: MyViewController {
     
     private let homeScreen = HomeScreen()
     private let mapScreen = MapScreen()
-    private let searchScreen = SearchScreen()
     private let randomScreen = RandomScreen()
+    private let settingScreen = SettingScreen()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,14 +58,14 @@ extension MyTabBarScreen {
             self.pushViewController(EditDetailScreen())
         }
         
-        appTabBar.setTapAction(.Search) { [weak self] in
-            guard let self = self else { return }
-            setScreen(searchScreen, .Search)
-        }
-        
         appTabBar.setTapAction(.WhatToEat) { [weak self] in
             guard let self = self else { return }
             setScreen(randomScreen, .WhatToEat)
+        }
+        
+        appTabBar.setTapAction(.Setting) { [weak self] in
+            guard let self = self else { return }
+            setScreen(settingScreen, .Setting)
         }
         
         let appScreen = MyStack(arrangedSubviews: [screenView, appTabBar])

@@ -11,6 +11,6 @@ enum TabBarType: CaseIterable {
     case FoodList
     case Location
     case AddFood
-    case Search
     case WhatToEat
+    case Setting
 }

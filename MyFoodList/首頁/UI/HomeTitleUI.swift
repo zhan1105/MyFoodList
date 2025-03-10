@@ -11,11 +11,17 @@ class HomeTitleUI: UIView {
 
     private let logoImage = MyPackageImage()
     private let titleLabel = MyLabel()
-    private let spacerImage = MyPackageImage()
+    private let searchButton = MyPackageButton()
 
     var setTitle: String? = nil {
         didSet {
             titleLabel.text = setTitle
+        }
+    }
+    
+    var setSearchButtonAction: (() -> Void)? {
+        didSet {
+            searchButton.buttonAction = setSearchButtonAction
         }
     }
     
@@ -38,9 +44,12 @@ class HomeTitleUI: UIView {
         titleLabel.text = "XX的美食清單"
         titleLabel.font = .boldTitle2
         
-        spacerImage.viewPadding(to: width * 0.025, left: 0)
+        searchButton.buttonText = ""
+        searchButton.buttonImage = UIImage(systemSymbol: .search)
+        searchButton.buttonTintColor = .charcoalBlack
+        searchButton.viewPadding(to: width * 0.025, left: 0)
         
-        let subScreen = MyStack(arrangedSubviews: [logoImage, titleLabel, spacerImage])
+        let subScreen = MyStack(arrangedSubviews: [logoImage, titleLabel, searchButton])
         subScreen.axis = .horizontal
         subScreen.setBackgroundImage = .titleBackground
         subScreen.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +63,7 @@ class HomeTitleUI: UIView {
             
             logoImage.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.15),
             titleLabel.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.7),
-            spacerImage.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.15)
+            searchButton.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.15)
         ])
     }
 }
