@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FireStoreCollection: String {
+enum FireStoreKey: String {
     case Login      = "Login"
     case Member     = "Member"
     case FoodList   = "FoodList"

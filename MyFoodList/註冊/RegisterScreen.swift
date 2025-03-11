@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
 
 class RegisterScreen: MyViewController {
 
@@ -13,6 +15,12 @@ class RegisterScreen: MyViewController {
     private let registerField = RegisterFieldUI()
     private let registerButton = MyPackageButton()
     private let backButton = MyPackageButton()
+
+    private let db = Firestore.firestore()
+
+    private var name = String()
+    private var account = String()
+    private var password = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +39,13 @@ class RegisterScreen: MyViewController {
             switch textFieldType {
             case .name:
                 errorMessage = "暱稱"
+                name = verifyText ?? ""
             case .account:
                 errorMessage = "帳號"
+                account = verifyText ?? ""
             case .password, .password_Check:
                 errorMessage = "密碼"
+                password = verifyText ?? ""
             }
             
             if let selectText = verifyText, selectText.isEmpty {
@@ -48,7 +59,7 @@ class RegisterScreen: MyViewController {
                 registerField.setErrorMessage(textFieldType, isShow: false)
             }
             
-            //TODO: - 註冊寫入資料 FireStore
+            Task { await RegisterFireStore() }
         }
     }
 }
@@ -160,5 +171,47 @@ extension RegisterScreen: UITextFieldDelegate {
             
             registerField.setErrorMessage(.password_Check, isShow: !verifySame, "兩次密碼不同")
         }
+    }
+}
+
+//MARK: - FireStore
+extension RegisterScreen {
+    private func RegisterFireStore() async {
+        
+        showLoading()
+        
+        let body: [String: String] = [
+            "Member_ID":        "",
+            "Name":             name,
+            "Account":          account,
+            "Password":         password,
+            "FaceID":           "",
+            "FoodList_ID":      ""
+        ]
+        
+        do {
+            let data = try await db.collection(FireStoreKey.Member.rawValue).addDocument(data: body)
+            let documentID = data.documentID
+            
+            let update_MemberID = ["Member_ID": documentID]
+            try await data.setData(update_MemberID, merge: true)
+            
+            let loginData = [
+                "Account":     account,
+                "Password":    password,
+                "FaceID":      ""
+            ]
+                        
+            try await db.collection(FireStoreKey.Login.rawValue)
+                .document(documentID)
+                .setData(loginData)
+            
+            pushViewController(LoginScreen())
+            
+        } catch {
+            MyPrint("Firestore 註冊失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
     }
 }

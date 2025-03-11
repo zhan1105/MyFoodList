@@ -71,51 +71,57 @@ class LoginScreen: MyViewController {
         
         let context = LAContext()
         var error: NSError?
-        var message = String()
         
         // 檢查是否支持生物識別（Face ID 或 Touch ID）
-        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-            let reason = "使用 Face ID 進行身份驗證"
-            
-            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
-                DispatchQueue.main.async { [self] in
-                    if success {
-                        // 認證成功，獲取回傳ID，轉換為 String
-                        if let policyDomainState = context.evaluatedPolicyDomainState {
-                            faceID = policyDomainState.base64EncodedString()
-                                                
-                            Task { await LoginFireStore_FaceID() }
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            // 不支援 Face ID，顯示錯誤信息
+            if let error = error {
+                let message = "生物識別不可用: \(error.localizedDescription)"
+                showMessage(message)
+            }
+            return
+        }
+        
+        let reason = "使用 Face ID 進行身份驗證"
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+            DispatchQueue.main.async {
+                if success {
+                    // 認證成功，獲取回傳 ID，轉換為 String
+                    if let policyDomainState = context.evaluatedPolicyDomainState {
+                        self.faceID = policyDomainState.base64EncodedString()
+                        
+                        // Firestore 操作應該在背景執行
+                        Task {
+                            await self.LoginFireStore_FaceID()
+                        }
+                    }
+                } else {
+                    // 認證失敗，顯示錯誤信息
+                    let message: String
+                    if let error = authenticationError as? LAError {
+                        switch error.code {
+                        case .appCancel:
+                            message = "應用程式取消認證"
+                        case .userCancel:
+                            message = "用戶取消認證"
+                        case .authenticationFailed:
+                            message = "認證失敗"
+                        case .biometryNotEnrolled:
+                            message = "未設定 Face ID 或 Touch ID"
+                        case .biometryLockout:
+                            message = "生物識別被鎖定，需要用戶解鎖"
+                        default:
+                            message = "未知的錯誤"
                         }
                     } else {
-                        // 認證失敗，顯示錯誤信息
-                        if let error = authenticationError as? LAError {
-                            switch error.code {
-                            case .appCancel:
-                                message = "應用程式取消認證"
-                            case .userCancel:
-                                message = "用戶取消認證"
-                            case .authenticationFailed:
-                                message = "認證失敗"
-                            case .biometryNotEnrolled:
-                                message = "未設定 Face ID 或 Touch ID"
-                            case .biometryLockout:
-                                message = "生物識別被鎖定，需要用戶解鎖"
-                            default:
-                                message = "未知的錯誤"
-                            }
-                        }
-                        showMessage(message)
+                        message = "認證發生錯誤"
                     }
+                    
+                    self.showMessage(message)
                 }
-            }
-        } else {
-            // 不支持生物識別，顯示相應的錯誤信息
-            if let error = error {
-                message = "生物識別不可用: \(error.localizedDescription)"
             }
         }
     }
-
 }
 
 //MARK: - UI
@@ -189,7 +195,7 @@ extension LoginScreen {
         showLoading()
         
         do {
-            let data = try await db.collection("Login")
+            let data = try await db.collection(FireStoreKey.Login.rawValue)
                 .whereField("Account", isEqualTo: account) // 搜尋 Account
                 .getDocuments()
             
@@ -227,7 +233,7 @@ extension LoginScreen {
         showLoading()
         
         do {
-            let data = try await db.collection("Login")
+            let data = try await db.collection(FireStoreKey.Login.rawValue)
                 .whereField("FaceID", isEqualTo: faceID) // 搜尋 Account
                 .getDocuments()
             
