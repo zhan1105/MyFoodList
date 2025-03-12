@@ -11,6 +11,8 @@
 		7F13A10F2D7052F200C1386C /* HomeTitleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A10E2D7052F200C1386C /* HomeTitleUI.swift */; };
 		7F13A1122D70571E00C1386C /* EditDetailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1112D70571E00C1386C /* EditDetailUI.swift */; };
 		7F13A1142D70584200C1386C /* EvaluateButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */; };
+		7F96ECC72D800992003E507B /* SettingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96ECC62D800992003E507B /* SettingAlert.swift */; };
+		7F96ECCB2D8031B9003E507B /* SetUserInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */; };
 		7F97EBF02D75920900624062 /* PriceFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97EBEF2D75920900624062 /* PriceFieldUI.swift */; };
 		7F97EBF22D75931400624062 /* FoodFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97EBF12D75931400624062 /* FoodFieldUI.swift */; };
 		7F97EBF42D7594A800624062 /* PictureFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97EBF32D7594A800624062 /* PictureFieldUI.swift */; };
@@ -117,6 +119,8 @@
 		7F13A10E2D7052F200C1386C /* HomeTitleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleUI.swift; sourceTree = "<group>"; };
 		7F13A1112D70571E00C1386C /* EditDetailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailUI.swift; sourceTree = "<group>"; };
 		7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateButtonUI.swift; sourceTree = "<group>"; };
+		7F96ECC62D800992003E507B /* SettingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAlert.swift; sourceTree = "<group>"; };
+		7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserInfoDelegate.swift; sourceTree = "<group>"; };
 		7F97EBEF2D75920900624062 /* PriceFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFieldUI.swift; sourceTree = "<group>"; };
 		7F97EBF12D75931400624062 /* FoodFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodFieldUI.swift; sourceTree = "<group>"; };
 		7F97EBF32D7594A800624062 /* PictureFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureFieldUI.swift; sourceTree = "<group>"; };
@@ -265,6 +269,14 @@
 				7F97EBF32D7594A800624062 /* PictureFieldUI.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		7F96ECC52D800967003E507B /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				7F96ECC62D800992003E507B /* SettingAlert.swift */,
+			);
+			path = Alert;
 			sourceTree = "<group>";
 		};
 		7F9A6A3D2D66CB8200261C09 = {
@@ -645,6 +657,7 @@
 			isa = PBXGroup;
 			children = (
 				7FAA1DE92D7AEE4D0022C241 /* Model */,
+				7F96ECC52D800967003E507B /* Alert */,
 				7FAA1DE22D7AE0B10022C241 /* UI */,
 				7FAA1DE02D7AD45E0022C241 /* SettingScreen.swift */,
 			);
@@ -665,6 +678,7 @@
 			children = (
 				7FAA1DEA2D7AEE6B0022C241 /* SettingsItem.swift */,
 				7FAA1DEC2D7AEED50022C241 /* SettingsType.swift */,
+				7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -946,6 +960,7 @@
 				7F9A6AE12D66CD8400261C09 /* MyPackageButton.swift in Sources */,
 				7FE20AF52D6D944E0099A96C /* RandomUI.swift in Sources */,
 				7F9A6AE22D66CD8400261C09 /* MyImage.swift in Sources */,
+				7F96ECCB2D8031B9003E507B /* SetUserInfoDelegate.swift in Sources */,
 				7FF0EAA22D77F0250079ADAB /* SearchDelegate.swift in Sources */,
 				7F9A6AE32D66CD8400261C09 /* UserDefaultsKey.swift in Sources */,
 				7F9A6AE42D66CD8400261C09 /* MyPackageSwitch.swift in Sources */,
@@ -954,6 +969,7 @@
 				7FA5D1032D794EC20004BF9F /* CoordinateFieldUI.swift in Sources */,
 				7F9A6AE62D66CD8400261C09 /* MyStack.swift in Sources */,
 				7F9A6AE72D66CD8400261C09 /* MyTextField.swift in Sources */,
+				7F96ECC72D800992003E507B /* SettingAlert.swift in Sources */,
 				7F9A6AE82D66CD8400261C09 /* NationalItem.swift in Sources */,
 				7F9A6AE92D66CD8400261C09 /* LanguageSelector.swift in Sources */,
 				7F9A6AEA2D66CD8400261C09 /* AppDateSelector.swift in Sources */,

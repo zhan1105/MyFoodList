@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import LocalAuthentication
 
 class SettingScreen: MyViewController {
     
@@ -17,8 +20,14 @@ class SettingScreen: MyViewController {
 
     private let logoutButton = MyPackageButton()
     
+    private let db = Firestore.firestore()
+    
     private let settingsItem = SettingsItem().settingsData
     
+    private var memberID = String()
+    private var memberName = String()
+    private var password = String()
+    private var faceID = String()
     private var setFaceID: Bool = false
 
     override func viewDidLoad() {
@@ -29,7 +38,63 @@ class SettingScreen: MyViewController {
         
         self.setMyBackgroundColor(.lightGrayWhite)
         setupUI()
+        
+        Task { await getMemberData() }
     }
+    
+    private func verify_FaceID() {
+        
+        let context = LAContext()
+        var error: NSError?
+        
+        // 檢查是否支持生物識別（Face ID 或 Touch ID）
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            // 不支援 Face ID，顯示錯誤信息
+            if let error = error {
+                let message = "生物識別不可用: \(error.localizedDescription)"
+                showMessage(message)
+            }
+            return
+        }
+        
+        let reason = "使用 Face ID 進行身份驗證"
+        context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+            DispatchQueue.main.async {
+                if success {
+                    // 認證成功，獲取回傳 ID，轉換為 String
+                    if let policyDomainState = context.evaluatedPolicyDomainState {
+                        self.faceID = policyDomainState.base64EncodedString()
+                        
+                        Task { await self.updataUserInfo(.face_ID, self.faceID) }
+                    }
+                } else {
+                    // 認證失敗，顯示錯誤信息
+                    let message: String
+                    if let error = authenticationError as? LAError {
+                        switch error.code {
+                        case .appCancel:
+                            message = "應用程式取消認證"
+                        case .userCancel:
+                            message = "用戶取消認證"
+                        case .authenticationFailed:
+                            message = "認證失敗"
+                        case .biometryNotEnrolled:
+                            message = "未設定 Face ID 或 Touch ID"
+                        case .biometryLockout:
+                            message = "生物識別被鎖定，需要用戶解鎖"
+                        default:
+                            message = "未知的錯誤"
+                        }
+                    } else {
+                        message = "認證發生錯誤"
+                    }
+                    
+                    self.showMessage(message)
+                }
+            }
+        }
+    }
+
 }
 
 //MARK: - UI
@@ -123,15 +188,138 @@ extension SettingScreen: UITableViewDelegate, UITableViewDataSource {
         let data = settingsItem[index]
 
         switch data.type {
-        case .edit_Name:
-            MyPrint(data.name)
-        case .reset_Password:
-            MyPrint(data.name)
+        case .edit_Name, .reset_Password:
+            
+            let settingAlert = SettingAlert()
+            settingAlert.setUserInfoDelegate = self
+            settingAlert.settingsType = data.type
+            
+            overlayAlert(settingAlert)
+            
         case .face_ID:
-            MyPrint(data.name)
-            setFaceID.toggle()
+            if !setFaceID {
+                self.verify_FaceID()
+            } else {
+                Task { await self.deleteFaceID() }
+            }
         }
+    }
+}
+
+//MARK: - FireStore
+extension SettingScreen {
+    private func getMemberData() async {
+        
+        showLoading()
+        
+        memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
+        
+        do {
+            let data = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+            let dataResponse = try await data.getDocument()
+            
+            memberName = dataResponse["Name"] as! String
+            userInfo.setUserName = memberName
+            
+            setFaceID = (dataResponse["FaceID"] as! String != "")
+            UserDefaults.standard.set(setFaceID, forKey: UserDefaultsKey.isSetFaceID.rawValue)
+            
+            optionTable.reloadData()
+            
+        } catch {
+            MyPrint("Firestore 註冊失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+        
+    private func updataUserInfo(_ type: SettingsType, _ updataValue: String?) async {
+        
+        showLoading()
+        
+        memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
+
+        do {
+            let memberData = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+
+            var key = String()
+            
+            switch type {
+            case .edit_Name:
+                key = "Name"
+                userInfo.setUserName = updataValue
+            case .reset_Password:
+                
+                key = "Password"
+                let loginData = db.collection(FireStoreKey.Login.rawValue).document(memberID)
+                try await loginData.setData(["Password": password], merge: true)
+                
+            case .face_ID:
+                
+                key = "FaceID"
+                let loginData = db.collection(FireStoreKey.Login.rawValue).document(memberID)
+                try await loginData.setData(["FaceID": faceID], merge: true)
+                
+                setFaceID = true
+                UserDefaults.standard.set(setFaceID, forKey: UserDefaultsKey.isSetFaceID.rawValue)
+                
+                optionTable.reloadData()
+            }
+            
+            if let updataValue = updataValue {
+                try await memberData.setData([key: updataValue], merge: true)
+            }
+            
+           
+        } catch {
+            MyPrint("Firestore 設定 FaceID 失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
     
-        tableView.reloadData()
+    private func deleteFaceID() async {
+        
+        showLoading()
+        
+        do {
+            let memberData = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+            try await memberData.setData(["FaceID": ""], merge: true)
+            
+            let loginData = db.collection(FireStoreKey.Login.rawValue).document(memberID)
+            try await loginData.setData(["FaceID": ""], merge: true)
+            
+            faceID = ""
+            setFaceID = false
+            
+            UserDefaults.standard.set(setFaceID, forKey: UserDefaultsKey.isSetFaceID.rawValue)
+            
+            optionTable.reloadData()
+            
+        } catch {
+            MyPrint("Firestore 刪除 FaceID 失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+
+}
+
+//MARK: - SetUserInfoDelegate
+extension SettingScreen: SetUserInfoDelegate {
+    func setUserInfo(_ type: SettingsType, _ newUserInfo: String?) {
+        
+        if let newUserInfo = newUserInfo {
+            switch type {
+            case .edit_Name:
+                memberName = newUserInfo
+            case .reset_Password:
+                password = newUserInfo
+            case .face_ID:
+                break
+            }
+            
+            Task { await updataUserInfo(type, newUserInfo) }
+        }
     }
 }

@@ -27,8 +27,9 @@ class LoginScreen: MyViewController {
         setupUI()
         
         let isSetFaceID = UserDefaults.standard.bool(forKey: UserDefaultsKey.isSetFaceID.rawValue)
+        let isFirstOpen = UserDefaults.standard.bool(forKey: UserDefaultsKey.isFirstOpen.rawValue)
        
-        if isSetFaceID {
+        if isFirstOpen && isSetFaceID {
             verify_FaceID()
         }
     }
@@ -214,6 +215,7 @@ extension LoginScreen {
                 let documentID = document.documentID
                 UserDefaults.standard.set(documentID, forKey: UserDefaultsKey.user_id.rawValue)
                 UserDefaults.standard.set(true, forKey: UserDefaultsKey.isLogin.rawValue)
+                UserDefaults.standard.set(false, forKey: UserDefaultsKey.isFirstOpen.rawValue)
                 
                 self.pushViewController(MyTabBarScreen())
             } else {
@@ -247,6 +249,7 @@ extension LoginScreen {
             let documentID = document.documentID
             UserDefaults.standard.set(documentID, forKey: UserDefaultsKey.user_id.rawValue)
             UserDefaults.standard.set(true, forKey: UserDefaultsKey.isLogin.rawValue)
+            UserDefaults.standard.set(false, forKey: UserDefaultsKey.isFirstOpen.rawValue)
 
             self.pushViewController(MyTabBarScreen())
             

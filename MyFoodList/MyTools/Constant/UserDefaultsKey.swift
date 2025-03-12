@@ -9,6 +9,7 @@ import Foundation
 
 enum UserDefaultsKey: String {
     case none
+    case isFirstOpen
     
     //MARK: - Login
     case isLogin

@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // 初始化 Firebase
         FirebaseApp.configure()
                 
+        UserDefaults.standard.set(true, forKey: UserDefaultsKey.isFirstOpen.rawValue)
+        
         return true
     }
 
