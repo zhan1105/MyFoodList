@@ -6,12 +6,21 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
 
 class HomeScreen: MyViewController {
     
     private let titleBar = HomeTitleUI()
     private let foodListTable = UITableView()
     
+    private let db = Firestore.firestore()
+    
+    private var foodListItem = [FoodListItem]()
+    private var foodList_ID = [String]()
+    
+    private var memberName = String()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,6 +28,8 @@ class HomeScreen: MyViewController {
         foodListTable.dataSource = self
         
         setupUI()
+        
+        Task { await FoodListFireStore() }
     }
 }
 
@@ -58,18 +69,22 @@ extension HomeScreen {
 extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        foodListItem.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FoodListCell", for: indexPath) as? FoodListCell else {
             return UITableViewCell()
         }
+        let index = indexPath.row
+        let data = foodListItem[index]
         
-        cell.setTitle = "美食名稱"
-        cell.setPrice = "100 ~ 1000"
-        cell.setAddress = "台中市北區進化路280號"
-        
+        cell.setTitle = data.food
+        cell.setPrice = data.price
+        cell.setAddress = data.address
+        cell.setEvaluate = data.evaluate
+        cell.setPicture = UIImage.convertStrToImage(data.picture01)
+                
         return cell
     }
     
@@ -80,8 +95,12 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let index = indexPath.row
-                
-        pushViewController(FoodDetailScreen())
+        let data = foodListItem[index]
+        
+        let foodDetailScreen = FoodDetailScreen()
+        foodDetailScreen.food_id = data.id
+        
+        pushViewController(foodDetailScreen)
     
         tableView.reloadData()
     }
@@ -93,5 +112,54 @@ extension HomeScreen: SearchDelegate {
     
     func search(text: String) {
         MyPrint("123")
+    }
+}
+
+//MARK: - FireStore
+extension HomeScreen {
+    private func FoodListFireStore() async {
+        
+        showLoading()
+        
+        let memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
+        
+        do {
+            foodListItem.removeAll()
+            
+            let data = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+            let dataResponse = try await data.getDocument()
+            
+            memberName = dataResponse["Name"] as! String
+            titleBar.setTitle = memberName + " 的美食清單"
+            
+            foodList_ID = dataResponse["FoodList_ID"] as! [String]
+            
+            for food_id in foodList_ID {
+                let data_foodList = db.collection(FireStoreKey.FoodList.rawValue).document(food_id)
+                let dataResponse_foodList = try await data_foodList.getDocument()
+                
+                foodListItem.append(FoodListItem(id:            food_id,
+                                                 food:          dataResponse_foodList["Food"] as! String,
+                                                 price:         dataResponse_foodList["Price"] as! String,
+                                                 address:       dataResponse_foodList["Address"] as! String,
+                                                 coordinate:    dataResponse_foodList["Coordinate"] as! String,
+                                                 link:          dataResponse_foodList["Link"] as! String,
+                                                 evaluate:      dataResponse_foodList["Evaluate"] as! Int,
+                                                 picture01:     dataResponse_foodList["Picture01"] as! String,
+                                                 picture02:     dataResponse_foodList["Picture01"] as! String))
+            }
+            
+            
+            if foodList_ID.count == 0 {
+                MyPrint("沒有食物清單")
+            }
+            
+            foodListTable.reloadData()
+            
+        } catch {
+            MyPrint("Firestore 獲取清單失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
     }
 }

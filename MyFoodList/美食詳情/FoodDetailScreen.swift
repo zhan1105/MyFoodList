@@ -20,6 +20,8 @@ class FoodDetailScreen: MyViewController {
     
     private let editItem: [String] = ["編輯", "刪除"]
     
+    var food_id = String()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

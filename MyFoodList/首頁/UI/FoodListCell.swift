@@ -42,6 +42,12 @@ class FoodListCell: UITableViewCell {
         }
     }
     
+    var setEvaluate: Int = 0 {
+        didSet {
+            evaluateImage.setEvaluate = setEvaluate
+        }
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.backgroundColor = .clear
