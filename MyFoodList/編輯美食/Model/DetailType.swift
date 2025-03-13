@@ -7,13 +7,11 @@
 
 import Foundation
 
-enum DetailType {
+enum DetailType: CaseIterable {
     case food
     case minPrice
     case maxPrice
-    case phoneNumber
     case address
-    case lat
-    case lng
     case link
+    case coordinate
 }

@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import PhotosUI
 
 class EditDetailScreen: MyViewController {
     
@@ -13,9 +16,21 @@ class EditDetailScreen: MyViewController {
     private let scrollView = UIScrollView()
     private var contentView: EditDetailUI!
     
-    private var evaluate = Int()
+    private let db = Firestore.firestore()
     
     private let uploadItem = ["相機", "相簿"]
+
+    private var foodName =      String()
+    private var minPrice =      String()
+    private var maxPrice =      String()
+    private var address =       String()
+    private var link =          String()
+    private var coordinate =    String()
+    private var evaluate =      Int()
+    private var picture01 =     String()
+    private var picture02 =     String()
+    
+    private var selectImageType: UploadPictureType?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +46,9 @@ class EditDetailScreen: MyViewController {
             let action = UIAlertAction(title: item, style: .default) { [weak self] _ in
                 guard let self = self else { return }
                 if item == "相機" {
-                    
+                    self.showImagePicker()
                 } else {
-                    
+                    self.openPhotoAlbum()
                 }
             }
             alert.addAction(action)
@@ -43,6 +58,75 @@ class EditDetailScreen: MyViewController {
         alert.addAction(cancelAction)
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func openPhotoAlbum() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1  // 限制選擇 1 張圖片
+        config.filter = .images  // 只顯示圖片
+        
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    private func isVerify() {
+        var isValid = true
+        
+        for textFieldType in DetailType.allCases {
+            
+            let verifyText = contentView.getFieldText(textFieldType)
+            var errorMessage = String()
+            
+            switch textFieldType {
+            case .food:
+                errorMessage = "美食名稱"
+                foodName = verifyText ?? ""
+            case .minPrice:
+                errorMessage = "最低價位"
+                minPrice = verifyText ?? ""
+            case .maxPrice:
+                errorMessage = "最高價位"
+                maxPrice = verifyText ?? ""
+            case .address:
+                errorMessage = "地址"
+                address = verifyText ?? ""
+            case .link:
+                errorMessage = "連結"
+                link = verifyText ?? ""
+            case .coordinate:
+                errorMessage = "經緯度"
+                coordinate = verifyText ?? ""
+            }
+            
+            if let selectText = verifyText, selectText.isEmpty {
+                showMessage(errorMessage + "不可為空")
+                isValid = false
+            }
+        }
+        
+        if evaluate == 0 {
+            showMessage("必須評分")
+            isValid = false
+        }
+        
+        for pictureType in UploadPictureType.allCases {
+            if contentView.isUsingDefaultImage(pictureType) {
+                showMessage("必須上傳兩張圖片")
+                isValid = false
+            } else {
+                switch pictureType {
+                case .First_Picture:
+                    picture01 = contentView.getUploadPicture(.First_Picture).getJPEGBase64StrFromImage(maxSize: 100 * 1024)
+                case .Second_Picture:
+                    picture02 = contentView.getUploadPicture(.Second_Picture).getJPEGBase64StrFromImage(maxSize: 100 * 1024)
+                }
+            }
+        }
+        
+        if isValid {
+            Task { await AddFoodDetail() }
+        }
     }
 }
 
@@ -90,21 +174,21 @@ extension EditDetailScreen {
             self.contentView.setEvaluate = evaluate
         }
         
-        contentView.setUploadAction(0) { [weak self] in
+        contentView.setUploadAction(.First_Picture) { [weak self] in
             guard let self = self else { return }
+            selectImageType = .First_Picture
             self.setUploadAction()
-//            self.contentView.setUploadPicture(0, picture: .arrowUp)
         }
         
-        contentView.setUploadAction(1) { [weak self] in
+        contentView.setUploadAction(.Second_Picture) { [weak self] in
             guard let self = self else { return }
+            selectImageType = .Second_Picture
             self.setUploadAction()
-//            self.contentView.setUploadPicture(1, picture: .arrowDown)
         }
         
         contentView.setNextButtonAction = { [weak self] in
             guard let self = self else { return }
-            self.MyPrint(evaluate)
+            self.isVerify()
         }
                 
         let appScreen = MyStack(arrangedSubviews: [titleBar, scrollView])
@@ -134,32 +218,114 @@ extension EditDetailScreen {
     }
 }
 
+//MARK: - PHPickerViewControllerDelegate
+extension EditDetailScreen: PHPickerViewControllerDelegate {
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        guard let result = results.first else { return }
+        
+        result.itemProvider.loadObject(ofClass: UIImage.self) { (image, error) in
+            DispatchQueue.main.async { [self] in
+                if let image = image as? UIImage {
+                    self.contentView.setUploadPicture(selectImageType!, picture: image)
+                }
+            }
+        }
+    }
+}
+
+//MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension EditDetailScreen: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func showImagePicker() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("此設備不支援該功能")
+            return
+        }
+        
+        let picker = UIImagePickerController()
+        picker.sourceType = .camera
+        picker.delegate = self
+        picker.allowsEditing = false  // 允許編輯
+        present(picker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        if let editedImage = info[.editedImage] as? UIImage {
+            self.contentView.setUploadPicture(selectImageType!, picture: editedImage)  // 設定圖片
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            self.contentView.setUploadPicture(selectImageType!, picture: originalImage)
+        }
+        picker.dismiss(animated: true)
+    }
+    
+    // 取消選擇
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+}
+
 //MARK: - UITextFieldDelegate
 extension EditDetailScreen: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        
-        let currentText = textField.text ?? ""
-        
-        guard let stringRange = Range(range, in: currentText) else { return false }
-        let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-        
+                
         let Characters = "0123456789"
         textField.autocapitalizationType = .allCharacters
         
         switch textField {
-        case contentView.getTextField(.minPrice), contentView.getTextField(.maxPrice), contentView.getTextField(.phoneNumber):
+        case contentView.getTextField(.minPrice), contentView.getTextField(.maxPrice):
             
             let allowedCharacters = CharacterSet(charactersIn: Characters)
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
             
-        case contentView.getTextField(.lat), contentView.getTextField(.lng):
+        case contentView.getTextField(.coordinate):
             
-            let allowedCharacters = CharacterSet(charactersIn: "\(Characters).")
+            let allowedCharacters = CharacterSet(charactersIn: "\(Characters),.() ")
             let characterSet = CharacterSet(charactersIn: string)
             return allowedCharacters.isSuperset(of: characterSet)
         default:
             return true
         }
+    }
+}
+
+//MARK: - FireStore
+extension EditDetailScreen {
+    
+    private func AddFoodDetail() async {
+        
+        showLoading()
+        
+        let body: [String: Any] = [
+            "Food":             foodName,
+            "Price":            minPrice + " ~ " + maxPrice,
+            "Address":          address,
+            "Coordinate":       coordinate,
+            "Link":             link,
+            "Evaluate":         evaluate,
+            "Picture01":        picture01,
+            "Picture02":        picture02,
+        ]
+        
+        do {
+            let data = try await db.collection(FireStoreKey.FoodList.rawValue).addDocument(data: body)
+            let documentID = data.documentID
+            
+            let memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
+            let data_Member = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+            let dataRespone_Member = try await data_Member.getDocument()
+            
+            var foodList: [String] = dataRespone_Member["FoodList_ID"] as! [String]
+            foodList.append(documentID)
+            try await data_Member.setData(["FoodList_ID": foodList], merge: true)
+            
+            pushViewController(MyTabBarScreen())
+            
+        } catch {
+            self.MyPrint("新增失敗：\(error.localizedDescription)")
+        }
+        
+        dismissLoading()
     }
 }

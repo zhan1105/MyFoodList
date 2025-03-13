@@ -22,12 +22,8 @@ extension UIImage {
     
     //UIImage 轉 Base64
     func getPNGBase64StrFromImage() -> String {
-        let dataTmp = self.pngData()
-        if let data = dataTmp {
-            let imageStrTT = data.base64EncodedString()
-            return imageStrTT
-        }
-        return ""
+        guard let data = self.pngData() else { return "" }
+        return data.base64EncodedString(options: .endLineWithLineFeed)
     }
     
     //Base64轉UIImage
@@ -40,6 +36,20 @@ extension UIImage {
             }
         }
         return nil
+    }
+    
+    func getJPEGBase64StrFromImage(maxSize: Int, compressionQuality: CGFloat = 0.9) -> String {
+        var quality = compressionQuality
+        var data = self.jpegData(compressionQuality: quality)
+        
+        // 若 data 超過 maxSize，則逐步降低品質進行壓縮
+        while let d = data, d.count > maxSize, quality > 0.1 {
+            quality -= 0.1
+            data = self.jpegData(compressionQuality: quality)
+        }
+        
+        guard let finalData = data else { return "" }
+        return finalData.base64EncodedString(options: .endLineWithLineFeed)
     }
 }
 

@@ -48,7 +48,7 @@ class EvaluateButtonUI: UIView {
     
     private func setupUI(spacing: CGFloat = 0){
                 
-        titleLabel.text = "評論："
+        titleLabel.text = "評分："
         titleLabel.font = .boldBody
         titleLabel.textAlignment = .left
         

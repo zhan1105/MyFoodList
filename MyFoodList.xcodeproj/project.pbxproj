@@ -98,6 +98,7 @@
 		7FB758672D6EE57F00C7B4B5 /* FoodListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */; };
 		7FB7586F2D6EED5100C7B4B5 /* MyIconLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */; };
 		7FCAC52F2D76A8E7005E7171 /* DetailType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FCAC52E2D76A8E7005E7171 /* DetailType.swift */; };
+		7FD066DC2D8168E800140FB1 /* UploadPictureType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD066DB2D8168E800140FB1 /* UploadPictureType.swift */; };
 		7FE20AEF2D6D4EA60099A96C /* RandomButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */; };
 		7FE20AF52D6D944E0099A96C /* RandomUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE20AF42D6D944E0099A96C /* RandomUI.swift */; };
 		7FF0EA9F2D77EE120079ADAB /* SearchAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF0EA9E2D77EE120079ADAB /* SearchAlert.swift */; };
@@ -119,6 +120,8 @@
 		7F13A10E2D7052F200C1386C /* HomeTitleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleUI.swift; sourceTree = "<group>"; };
 		7F13A1112D70571E00C1386C /* EditDetailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailUI.swift; sourceTree = "<group>"; };
 		7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateButtonUI.swift; sourceTree = "<group>"; };
+		7F8DC79A2D8269C800FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
+		7F8DC79B2D8269C900FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7F96ECC62D800992003E507B /* SettingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAlert.swift; sourceTree = "<group>"; };
 		7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserInfoDelegate.swift; sourceTree = "<group>"; };
 		7F97EBEF2D75920900624062 /* PriceFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFieldUI.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		7FB758662D6EE57F00C7B4B5 /* FoodListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListCell.swift; sourceTree = "<group>"; };
 		7FB7586E2D6EED5100C7B4B5 /* MyIconLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyIconLabel.swift; sourceTree = "<group>"; };
 		7FCAC52E2D76A8E7005E7171 /* DetailType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailType.swift; sourceTree = "<group>"; };
+		7FD066DB2D8168E800140FB1 /* UploadPictureType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadPictureType.swift; sourceTree = "<group>"; };
 		7FE20AEE2D6D4EA60099A96C /* RandomButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomButtonUI.swift; sourceTree = "<group>"; };
 		7FE20AF42D6D944E0099A96C /* RandomUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomUI.swift; sourceTree = "<group>"; };
 		7FF0EA9E2D77EE120079ADAB /* SearchAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAlert.swift; sourceTree = "<group>"; };
@@ -687,6 +691,7 @@
 			isa = PBXGroup;
 			children = (
 				7FCAC52E2D76A8E7005E7171 /* DetailType.swift */,
+				7FD066DB2D8168E800140FB1 /* UploadPictureType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -792,11 +797,12 @@
 			};
 			buildConfigurationList = 7F9A6A412D66CB8200261C09 /* Build configuration list for PBXProject "MyFoodList" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = en;
+			developmentRegion = "zh-Hant";
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 7F9A6A3D2D66CB8200261C09;
 			productRefGroup = 7F9A6A472D66CB8200261C09 /* Products */;
@@ -897,6 +903,7 @@
 				7F9A6ABE2D66CD8400261C09 /* MyText.swift in Sources */,
 				7F97EBF02D75920900624062 /* PriceFieldUI.swift in Sources */,
 				7F9A6ABF2D66CD8400261C09 /* Font+.swift in Sources */,
+				7FD066DC2D8168E800140FB1 /* UploadPictureType.swift in Sources */,
 				7FFF733C2D6C43CE0090E201 /* TabBarType.swift in Sources */,
 				7FE20AEF2D6D4EA60099A96C /* RandomButtonUI.swift in Sources */,
 				7FCAC52F2D76A8E7005E7171 /* DetailType.swift in Sources */,
@@ -993,6 +1000,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7F9A6A642D66CB8700261C09 /* Base */,
+				7F8DC79B2D8269C900FE7D52 /* zh-Hant */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1001,6 +1009,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				7F9A6A662D66CB8700261C09 /* Base */,
+				7F8DC79A2D8269C800FE7D52 /* zh-Hant */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1097,6 +1106,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -1160,6 +1170,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

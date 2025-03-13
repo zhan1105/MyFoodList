@@ -72,9 +72,9 @@ class CoordinateFieldUI: UIView {
         priceStack.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            latTextField.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.4),
-            midLabel.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.2),
-            lngTextField.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.4),
+            latTextField.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.45),
+            midLabel.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.1),
+            lngTextField.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.45),
         ])
         
         let spacer = MySpacer()
