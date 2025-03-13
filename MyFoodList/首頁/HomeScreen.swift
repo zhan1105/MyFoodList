@@ -124,6 +124,7 @@ extension HomeScreen {
         let memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
         
         do {
+            foodList_ID.removeAll()
             foodListItem.removeAll()
             
             let data = db.collection(FireStoreKey.Member.rawValue).document(memberID)
@@ -147,11 +148,6 @@ extension HomeScreen {
                                                  evaluate:      dataResponse_foodList["Evaluate"] as! Int,
                                                  picture01:     dataResponse_foodList["Picture01"] as! String,
                                                  picture02:     dataResponse_foodList["Picture01"] as! String))
-            }
-            
-            
-            if foodList_ID.count == 0 {
-                MyPrint("沒有食物清單")
             }
             
             foodListTable.reloadData()

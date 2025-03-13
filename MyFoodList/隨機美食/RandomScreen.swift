@@ -6,15 +6,29 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
 
 class RandomScreen: MyViewController {
 
     private var contentView: RandomUI!
 
+    private let db = Firestore.firestore()
+    
+    private var foodList_ID = [String]()
+    
+    private var foodName =      String()
+    private var price =         String()
+    private var address =       String()
+    private var link =          String()
+    private var evaluate =      Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+        
+        Task { await FoodListID_FireStore() }
     }
 }
 
@@ -31,11 +45,19 @@ extension RandomScreen {
         contentView.infoButtonAction = { [weak self] in
             guard let self = self else { return }
 
+            if let url = URL(string: link) {
+                UIApplication.shared.open(url)
+            }
         }
         
         contentView.chooseButtonAction = { [weak self] in
             guard let self = self else { return }
-            self.contentView.setShowInfo(isShow: true, food: "美食名稱")
+            
+            let random_ID = foodList_ID.randomElement()
+            
+            if let random_ID = random_ID {
+                Task { await self.FoodDetail_FireStore(id: random_ID) }
+            }
         }
         
         self.view.addSubview(contentView)
@@ -45,5 +67,51 @@ extension RandomScreen {
             contentView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
         ])
+    }
+}
+
+//MARK: - FireStore
+extension RandomScreen {
+    private func FoodListID_FireStore() async {
+        
+        showLoading()
+        
+        let memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
+        
+        do {
+            foodList_ID.removeAll()
+
+            let data = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+            let dataResponse = try await data.getDocument()
+            
+            foodList_ID = dataResponse["FoodList_ID"] as! [String]
+            
+        } catch {
+            MyPrint("Firestore 獲取清單ID失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+    
+    private func FoodDetail_FireStore(id: String) async {
+                
+        do {
+            let data = db.collection(FireStoreKey.FoodList.rawValue).document(id)
+            let dataResponse = try await data.getDocument()
+            
+            foodName = dataResponse["Food"] as! String
+            price = dataResponse["Price"] as! String
+            address = dataResponse["Address"] as! String
+            link = dataResponse["Link"] as! String
+            evaluate = dataResponse["Evaluate"] as! Int
+            
+            self.contentView.setShowInfo(isShow: true, food: foodName)
+            contentView.setPrice = "價格：" + price
+            contentView.setAddress = address
+            contentView.setEvaluate = evaluate
+            
+        } catch {
+            MyPrint("Firestore 獲取詳細資料失敗: \(error.localizedDescription)")
+        }
     }
 }

@@ -30,18 +30,24 @@ class RandomUI: UIView {
         }
     }
     
-    private var setPrice: String? = nil {
+    var setPrice: String? = nil {
         didSet {
             priceLabel.text = setPrice
         }
     }
     
-    private var setAddress: String? = nil {
+    var setAddress: String? = nil {
         didSet {
             addressLabel.text = setAddress
         }
     }
     
+    var setEvaluate: Int = 0 {
+        didSet {
+            evaluateImage.setEvaluate = setEvaluate
+        }
+    }
+
     var chooseButtonAction: (() -> Void)? {
         didSet {
             randomButton.chooseButtonAction = chooseButtonAction
