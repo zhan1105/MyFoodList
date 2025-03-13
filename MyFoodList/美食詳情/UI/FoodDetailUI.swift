@@ -10,7 +10,7 @@ import UIKit
 class FoodDetailUI: UIView {
 
     private let priceLabel = MyLabel()
-    private let phoneLabel = MyLabel()
+    private let addressTitleLabel = MyLabel()
     private let addressLabel = MyLabel()
     private let evaluateImage = EvaluateImageUI()
     
@@ -20,15 +20,6 @@ class FoodDetailUI: UIView {
         }
         set {
             priceLabel.text = newValue
-        }
-    }
-    
-    var food_Phone: String? {
-        get {
-            phoneLabel.text
-        }
-        set {
-            phoneLabel.text = newValue
         }
     }
     
@@ -63,7 +54,7 @@ class FoodDetailUI: UIView {
         
         let width = UIScreen.main.bounds.width
         
-        let labels: [MyLabel] = [priceLabel, phoneLabel, addressLabel]
+        let labels: [MyLabel] = [priceLabel, addressTitleLabel, addressLabel]
         labels.forEach {
             $0.font = UIFont.boldTitle3
             $0.textAlignment = .left
@@ -72,15 +63,14 @@ class FoodDetailUI: UIView {
         }
      
         priceLabel.text = "價位："
-        phoneLabel.text = "電話："
-        addressLabel.text = "地址："
-        
+        addressTitleLabel.text = "地址："
+
         evaluateImage.viewPadding(to: width * 0.005)
         
         let topSpacer = MySpacer()
         let bottomSpacer = MySpacer(.coralRed)
         
-        let subScreen = MyStack(arrangedSubviews: [topSpacer, priceLabel, phoneLabel, addressLabel, evaluateImage, bottomSpacer])
+        let subScreen = MyStack(arrangedSubviews: [topSpacer, priceLabel, addressTitleLabel, addressLabel, evaluateImage, bottomSpacer])
         subScreen.alignment = .center
         subScreen.layer.cornerRadius = 10
         subScreen.backgroundColor = .lightGrayWhite
@@ -95,9 +85,9 @@ class FoodDetailUI: UIView {
                         
             topSpacer.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.075),
             priceLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.2),
-            phoneLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.2),
+            addressTitleLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.2),
             addressLabel.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.2),
-            
+
             evaluateImage.widthAnchor.constraint(equalTo: subScreen.widthAnchor, multiplier: 0.95),
             evaluateImage.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.25),
             

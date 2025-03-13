@@ -13,6 +13,7 @@
 		7F13A1142D70584200C1386C /* EvaluateButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */; };
 		7F8DC79D2D8281A800FE7D52 /* FoodListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC79C2D8281A800FE7D52 /* FoodListItem.swift */; };
 		7F8DC7A02D82B48100FE7D52 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC79F2D82B48100FE7D52 /* LocationData.swift */; };
+		7F8DC7A22D82C16200FE7D52 /* FoodDetailBannerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC7A12D82C16200FE7D52 /* FoodDetailBannerUI.swift */; };
 		7F96ECC72D800992003E507B /* SettingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96ECC62D800992003E507B /* SettingAlert.swift */; };
 		7F96ECCB2D8031B9003E507B /* SetUserInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */; };
 		7F97EBF02D75920900624062 /* PriceFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97EBEF2D75920900624062 /* PriceFieldUI.swift */; };
@@ -126,6 +127,7 @@
 		7F8DC79B2D8269C900FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7F8DC79C2D8281A800FE7D52 /* FoodListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListItem.swift; sourceTree = "<group>"; };
 		7F8DC79F2D82B48100FE7D52 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
+		7F8DC7A12D82C16200FE7D52 /* FoodDetailBannerUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailBannerUI.swift; sourceTree = "<group>"; };
 		7F96ECC62D800992003E507B /* SettingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAlert.swift; sourceTree = "<group>"; };
 		7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserInfoDelegate.swift; sourceTree = "<group>"; };
 		7F97EBEF2D75920900624062 /* PriceFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFieldUI.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 			isa = PBXGroup;
 			children = (
 				7FA5D1002D793FBA0004BF9F /* FoodDetailUI.swift */,
+				7F8DC7A12D82C16200FE7D52 /* FoodDetailBannerUI.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -927,6 +930,7 @@
 				7F9A6AC22D66CD8400261C09 /* MyLinkLabel.swift in Sources */,
 				7F9A6AC32D66CD8400261C09 /* LocalizedStringKey.swift in Sources */,
 				7F9A6AC42D66CD8400261C09 /* MyViewController.swift in Sources */,
+				7F8DC7A22D82C16200FE7D52 /* FoodDetailBannerUI.swift in Sources */,
 				7F9A6AC52D66CD8400261C09 /* SignatureView.swift in Sources */,
 				7FAA1DED2D7AEED50022C241 /* SettingsType.swift in Sources */,
 				7F9A6AC62D66CD8400261C09 /* MySymbol.swift in Sources */,
