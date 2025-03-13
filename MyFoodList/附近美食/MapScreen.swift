@@ -8,6 +8,8 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import FirebaseCore
+import FirebaseFirestore
 
 class MapScreen: MyViewController {
 
@@ -15,6 +17,8 @@ class MapScreen: MyViewController {
     private let myLocationMgr = CLLocationManager()
     
     private let locationButton = MyPackageButton()
+    
+    private let db = Firestore.firestore()
     
     private var latitude = String()
     private var longitude = String()
@@ -66,7 +70,6 @@ extension MapScreen {
         ])
         
         setupInitialMapView()
-        setMarker(title: "一中街", lat: "24.147934", lng: "120.684509")
     }
     
     private func setupInitialMapView() {
@@ -88,12 +91,13 @@ extension MapScreen {
         mapView.animate(to: camera)
     }
     
-    private func setMarker(title: String, lat: String, lng: String) {
+    private func setMarker(title: String, lat: String, lng: String, link: String) {
         
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2DMake(Double(lat)!, Double(lng)!)
         marker.map = mapView
         marker.title = title
+        marker.userData = link
     }
 }
 
@@ -133,6 +137,7 @@ extension MapScreen: CLLocationManagerDelegate {
             setupUI()
 
             updateMapToUserLocation(location)
+            Task { await FoodDetail_FireStore() }
             myLocationMgr.stopUpdatingLocation() // 停止更新，避免不必要的呼叫
         }
     }
@@ -149,15 +154,52 @@ extension MapScreen: CLLocationManagerDelegate {
 // MARK: - GoogleMap
 extension MapScreen: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
-        let latitude = marker.position.latitude
-        let longitude = marker.position.longitude
-        
-//        if let url = URL(string: "https://www.google.com/maps?q=\(latitude),\(longitude)") {
-//            UIApplication.shared.open(url)
-//        }
-        
-        if let url = URL(string: "https://maps.app.goo.gl/1eEnBH4KCcxFx5SMA") {
-            UIApplication.shared.open(url)
+                
+        if let link = marker.userData {
+            if let url = URL(string: link as! String) {
+                UIApplication.shared.open(url)
+            }
         }
+    }
+}
+
+//MARK: - FireStore
+extension MapScreen {
+    private func FoodDetail_FireStore() async {
+        
+        showLoading()
+        
+        let memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
+
+        do {
+            let data = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+            let dataResponse = try await data.getDocument()
+            
+            let foodList_ID: [String] = dataResponse["FoodList_ID"] as! [String]
+            
+            for foodID in foodList_ID {
+                let data_food = db.collection(FireStoreKey.FoodList.rawValue).document(foodID)
+                let dataResponse_food = try await data_food.getDocument()
+                
+                let food = dataResponse_food["Food"] as! String
+                let link = dataResponse_food["Link"] as! String
+                let coordinate = dataResponse_food["Coordinate"] as! String
+                
+                let coordinates = coordinate
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "()")) // 去除括號
+                    .split(separator: ",") // 以逗號切割
+                    .map { $0.trimmingCharacters(in: .whitespaces) } // 去除空白
+
+                let lat = coordinates[0]
+                let lng = coordinates[1]
+                
+                setMarker(title: food, lat: lat, lng: lng, link: link)
+            }
+            
+        } catch {
+            MyPrint("Firestore 獲取座標失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
     }
 }

@@ -12,6 +12,7 @@
 		7F13A1122D70571E00C1386C /* EditDetailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1112D70571E00C1386C /* EditDetailUI.swift */; };
 		7F13A1142D70584200C1386C /* EvaluateButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */; };
 		7F8DC79D2D8281A800FE7D52 /* FoodListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC79C2D8281A800FE7D52 /* FoodListItem.swift */; };
+		7F8DC7A02D82B48100FE7D52 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC79F2D82B48100FE7D52 /* LocationData.swift */; };
 		7F96ECC72D800992003E507B /* SettingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96ECC62D800992003E507B /* SettingAlert.swift */; };
 		7F96ECCB2D8031B9003E507B /* SetUserInfoDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */; };
 		7F97EBF02D75920900624062 /* PriceFieldUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F97EBEF2D75920900624062 /* PriceFieldUI.swift */; };
@@ -124,6 +125,7 @@
 		7F8DC79A2D8269C800FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		7F8DC79B2D8269C900FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7F8DC79C2D8281A800FE7D52 /* FoodListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListItem.swift; sourceTree = "<group>"; };
+		7F8DC79F2D82B48100FE7D52 /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		7F96ECC62D800992003E507B /* SettingAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAlert.swift; sourceTree = "<group>"; };
 		7F96ECCA2D8031B9003E507B /* SetUserInfoDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUserInfoDelegate.swift; sourceTree = "<group>"; };
 		7F97EBEF2D75920900624062 /* PriceFieldUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceFieldUI.swift; sourceTree = "<group>"; };
@@ -275,6 +277,14 @@
 				7F97EBF32D7594A800624062 /* PictureFieldUI.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		7F8DC79E2D82B46100FE7D52 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7F8DC79F2D82B48100FE7D52 /* LocationData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		7F96ECC52D800967003E507B /* Alert */ = {
@@ -746,6 +756,7 @@
 		7FFF733D2D6C52580090E201 /* 附近美食 */ = {
 			isa = PBXGroup;
 			children = (
+				7F8DC79E2D82B46100FE7D52 /* Model */,
 				7FFF73402D6C52B40090E201 /* MapScreen.swift */,
 			);
 			path = "附近美食";
@@ -919,6 +930,7 @@
 				7F9A6AC52D66CD8400261C09 /* SignatureView.swift in Sources */,
 				7FAA1DED2D7AEED50022C241 /* SettingsType.swift in Sources */,
 				7F9A6AC62D66CD8400261C09 /* MySymbol.swift in Sources */,
+				7F8DC7A02D82B48100FE7D52 /* LocationData.swift in Sources */,
 				7FFF73322D6C3F050090E201 /* MyTabBarScreen.swift in Sources */,
 				7FB7586F2D6EED5100C7B4B5 /* MyIconLabel.swift in Sources */,
 				7F13A10D2D701F7000C1386C /* EvaluateImageUI.swift in Sources */,
