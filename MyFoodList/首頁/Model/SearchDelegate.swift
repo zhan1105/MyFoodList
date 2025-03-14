@@ -7,8 +7,6 @@
 
 import Foundation
 
-protocol SearchDelegate: AnyObject {
-    func showSearchAlert()
-    
-    func search(text: String)
+protocol SearchDelegate: AnyObject {  
+    func search(food: String?, price: Int?)
 }

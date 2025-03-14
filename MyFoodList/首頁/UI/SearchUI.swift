@@ -10,15 +10,35 @@ import UIKit
 class SearchUI: UIView {
     
     private(set) var searchField = MyTextField()
-    private let iconImage = MyImage()
+    private let logoImage = MyImage()
     
-    private(set) var minTextField = MyTextField()
-    private(set) var maxTextField = MyTextField()
-    private let midLabel = MyLabel()
-    private let priceStack = MyStack()
+    private(set) var priceField = MyTextField()
     
-    private let addressSelector = AppSelector()
     private let searchButton = MyPackageButton()
+    
+    var searchFieldText: String? {
+        get {
+            searchField.text
+        }
+        set {
+            searchField.text = newValue
+        }
+    }
+    
+    var pricrFieldText: String? {
+        get {
+            priceField.text
+        }
+        set {
+            priceField.text = newValue
+        }
+    }
+    
+    var searchButtonAction: (() -> Void)? {
+        didSet {
+            searchButton.buttonAction = searchButtonAction
+        }
+    }
     
     init(){
         super.init(frame: .zero)
@@ -33,46 +53,25 @@ class SearchUI: UIView {
         
         let width = UIScreen.main.bounds.width
         
-        iconImage.image = UIImage(systemSymbol: .search)
-        iconImage.tintColor = .mediumGray
+        logoImage.image = UIImage(systemSymbol: .search)
+        logoImage.tintColor = .mediumGray
         
         searchField.placeholder = "搜尋美食"
         searchField.font = UIFont.boldBody
         searchField.backgroundColor = .pureWhite
         searchField.layer.cornerRadius = 20
         searchField.textAlignment = .left
-        searchField.leftView = iconImage
+        searchField.leftView = logoImage
         searchField.leftViewMode = .always
         searchField.padding(left: 25)
         
-        midLabel.text = "～"
-        midLabel.font = .boldTitle3
-        
-        minTextField.placeholder = "最低價格"
-        maxTextField.placeholder = "最高價格"
-        
-        let priceField: [MyTextField] = [minTextField, maxTextField]
-        priceField.forEach {
-            $0.font = .boldBody
-            $0.layer.cornerRadius = 20
-            $0.keyboardType = .numberPad
-        }
-        
-        priceStack.addArrangedSubviews([minTextField, midLabel, maxTextField])
-        priceStack.axis = .horizontal
-        priceStack.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            minTextField.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.4),
-            midLabel.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.2),
-            maxTextField.widthAnchor.constraint(equalTo: priceStack.widthAnchor, multiplier: 0.4),
-        ])
-        
-        addressSelector.fieldPlaceholder = "地址"
-        addressSelector.fieldFont = .boldBody
-        addressSelector.select_BorderColor = UIColor.clear.cgColor
-        addressSelector.setBorderColor = UIColor.clear.cgColor
-        addressSelector.setCornerRadius = 20
+        priceField.placeholder = "價位"
+        priceField.font = UIFont.boldBody
+        priceField.backgroundColor = .pureWhite
+        priceField.layer.cornerRadius = 20
+        priceField.textAlignment = .left
+        priceField.keyboardType = .numberPad
+        priceField.padding(left: 25)
         
         let topSpacer = MySpacer()
         let bottomSpacer = MySpacer()
@@ -82,7 +81,7 @@ class SearchUI: UIView {
         searchButton.buttonCornerRadius = 20
         searchButton.viewPadding(bottom: width * 0.05)
         
-        let subScreen = MyStack(arrangedSubviews: [topSpacer, searchField, priceStack, addressSelector, bottomSpacer, searchButton])
+        let subScreen = MyStack(arrangedSubviews: [topSpacer, searchField, priceField, bottomSpacer, searchButton])
         subScreen.alignment = .center
         subScreen.spacing = width * 0.025
         subScreen.backgroundColor = .lightGrayWhite
@@ -96,22 +95,19 @@ class SearchUI: UIView {
             subScreen.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             topSpacer.widthAnchor.constraint(equalToConstant: width * 0.9),
-            topSpacer.heightAnchor.constraint(equalToConstant: width * 0.05),
+            topSpacer.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier:0.075),
             
             searchField.widthAnchor.constraint(equalToConstant: width * 0.9),
-            searchField.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.15),
+            searchField.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.2),
             
-            priceStack.widthAnchor.constraint(equalToConstant: width * 0.9),
-            priceStack.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.15),
-            
-            addressSelector.widthAnchor.constraint(equalToConstant: width * 0.9),
-            addressSelector.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.225),
+            priceField.widthAnchor.constraint(equalToConstant: width * 0.9),
+            priceField.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.2),
             
             bottomSpacer.widthAnchor.constraint(equalToConstant: width * 0.9),
-            bottomSpacer.heightAnchor.constraint(equalToConstant: width * 0.05),
+            bottomSpacer.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier:0.225),
             
             searchButton.widthAnchor.constraint(equalToConstant: width * 0.9),
-            searchButton.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.225),
+            searchButton.heightAnchor.constraint(equalTo: subScreen.heightAnchor, multiplier: 0.3),
         ])
     }
 }

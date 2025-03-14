@@ -32,6 +32,16 @@ extension SearchAlert {
         titleBar.setEditButtonImage = .menuCircle
         titleBar.editButtonAction = { [weak self] in self?.dismissOverlay() }
         
+        search.searchButtonAction = { [weak self] in
+            guard let self = self else { return }
+            
+            let price = Int(search.pricrFieldText ?? "0")
+            let food = search.searchFieldText
+            
+            self.searchDelegate?.search(food: food, price: price)
+            self.dismissOverlay()
+        }
+        
         spacerButton.backgroundColor = .clear
         spacerButton.buttonAction = { [weak self] in self?.dismissOverlay() }
         
@@ -46,8 +56,8 @@ extension SearchAlert {
             appScreen.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             
             titleBar.heightAnchor.constraint(equalTo: appScreen.heightAnchor, multiplier: 0.1),
-            search.heightAnchor.constraint(equalTo: appScreen.heightAnchor, multiplier: 0.45),
-            spacerButton.heightAnchor.constraint(equalTo: appScreen.heightAnchor, multiplier: 0.45)
+            search.heightAnchor.constraint(equalTo: appScreen.heightAnchor, multiplier: 0.4),
+            spacerButton.heightAnchor.constraint(equalTo: appScreen.heightAnchor, multiplier: 0.5)
         ])
     }
 }

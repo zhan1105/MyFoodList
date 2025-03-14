@@ -355,9 +355,14 @@ extension EditDetailScreen {
         
         showLoading()
         
+        let Price_Min = Int(minPrice) ?? 0
+        let Price_Max = Int(maxPrice) ?? 0
+        
         let body: [String: Any] = [
             "Food":             foodName,
             "Price":            minPrice + " ~ " + maxPrice,
+            "Price_Min":        Price_Min,
+            "Price_Max":        Price_Max,
             "Address":          address,
             "Coordinate":       coordinate,
             "Link":             link,
@@ -391,9 +396,14 @@ extension EditDetailScreen {
         
         showLoading()
         
+        let Price_Min = Int(minPrice) ?? 0
+        let Price_Max = Int(maxPrice) ?? 0
+        
         let body: [String: Any] = [
             "Food":             foodName,
             "Price":            minPrice + " ~ " + maxPrice,
+            "Price_Min":        Price_Min,
+            "Price_Max":        Price_Max,
             "Address":          address,
             "Coordinate":       coordinate,
             "Link":             link,

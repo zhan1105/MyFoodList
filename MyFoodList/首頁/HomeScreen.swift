@@ -108,10 +108,8 @@ extension HomeScreen: UITableViewDelegate, UITableViewDataSource {
 
 //MARK: - SearchDelegate
 extension HomeScreen: SearchDelegate {
-    func showSearchAlert() { }
-    
-    func search(text: String) {
-        MyPrint("123")
+    func search(food: String?, price: Int?) {
+        Task { await searchFoodList_FireStore(food: food, price: price) }
     }
 }
 
@@ -154,6 +152,73 @@ extension HomeScreen {
             
         } catch {
             MyPrint("Firestore 獲取清單失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+    
+    private func searchFoodList_FireStore(food: String?, price: Int?) async {
+        
+        showLoading()
+        
+        do {
+           
+            guard price != nil || food != nil else {
+                dismissLoading()
+                return
+            }
+                        
+            foodListItem.removeAll()
+                        
+            var isFoundData: Bool = true
+            
+            for food_id in foodList_ID {
+                
+                let data = db.collection(FireStoreKey.FoodList.rawValue).document(food_id)
+                let dataResponse = try await data.getDocument()
+                
+                let maxPriceData =      dataResponse["Price_Max"] as! Int
+
+                let foodData =          dataResponse["Food"] as! String
+                let priceData =         dataResponse["Price"] as! String
+                let addressData =       dataResponse["Address"] as! String
+                let coordinateData =    dataResponse["Coordinate"] as! String
+                let linkData =          dataResponse["Link"] as! String
+                let evaluateData =      dataResponse["Evaluate"] as! Int
+                let picture01Data =     dataResponse["Picture01"] as! String
+                let picture02Data =     dataResponse["Picture01"] as! String
+                
+                let matchesPrice = price != nil && maxPriceData <= price!
+                let matchesFood = food != nil && foodData.contains(food!)
+                
+                if matchesPrice || matchesFood {
+                    foodListItem.append(FoodListItem(
+                        id:             food_id,
+                        food:           foodData,
+                        price:          priceData,
+                        address:        addressData,
+                        coordinate:     coordinateData,
+                        link:           linkData,
+                        evaluate:       evaluateData,
+                        picture01:      picture01Data,
+                        picture02:      picture02Data
+                    ))
+                }
+                
+                isFoundData = matchesPrice || matchesFood
+            }
+            
+            if !isFoundData {
+                showMessage("沒有符合的美食")
+
+                Task { await FoodListFireStore() }
+            }
+            
+            foodListTable.reloadData()
+            
+            
+        } catch {
+            MyPrint("Firestore 搜尋失敗: \(error.localizedDescription)")
         }
         
         dismissLoading()
