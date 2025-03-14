@@ -32,10 +32,17 @@ class EditDetailScreen: MyViewController {
     
     private var selectImageType: UploadPictureType?
     
+    var food_id = String()
+    var editDetailType: EditDetailType?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupUI()
+        
+        if editDetailType == .Edit {
+            Task { await FoodDetail_FireStore() }
+        }
     }
     
     private func setUploadAction() {
@@ -125,7 +132,11 @@ class EditDetailScreen: MyViewController {
         }
         
         if isValid {
-            Task { await AddFoodDetail() }
+            if editDetailType == .Add {
+                Task { await AddFoodDetail_FireStore() }
+            } else {
+                Task { await EditFoodDetail_FireStore() }
+            }
         }
     }
 }
@@ -293,7 +304,54 @@ extension EditDetailScreen: UITextFieldDelegate {
 //MARK: - FireStore
 extension EditDetailScreen {
     
-    private func AddFoodDetail() async {
+    private func FoodDetail_FireStore() async {
+        
+        showLoading()
+        
+        do {
+            let data = db.collection(FireStoreKey.FoodList.rawValue).document(food_id)
+            let dataResponse = try await data.getDocument()
+                         
+            foodName = dataResponse["Food"] as! String
+            contentView.setFieldText(.food, foodName)
+            
+            let price = dataResponse["Price"] as! String
+            let prices = price
+                .split(separator: "~") // 以逗號切割
+                .map { $0.trimmingCharacters(in: .whitespaces) } // 去除空白
+            
+            minPrice = prices[0]
+            contentView.setFieldText(.minPrice, minPrice)
+
+            maxPrice = prices[1]
+            contentView.setFieldText(.maxPrice, maxPrice)
+
+            address = dataResponse["Address"] as! String
+            contentView.setFieldText(.address, address)
+            
+            link = dataResponse["Link"] as! String
+            contentView.setFieldText(.link, link)
+            
+            coordinate = dataResponse["Coordinate"] as! String
+            contentView.setFieldText(.coordinate, coordinate)
+            
+            evaluate = dataResponse["Evaluate"] as! Int
+            contentView.setEvaluate = evaluate
+            
+            picture01 = dataResponse["Picture01"] as! String
+            contentView.setUploadPicture(.First_Picture, picture: UIImage.convertStrToImage(picture01) ?? .picture)
+            
+            picture02 = dataResponse["Picture02"] as! String
+            contentView.setUploadPicture(.Second_Picture, picture: UIImage.convertStrToImage(picture02) ?? .picture)
+
+        } catch {
+            MyPrint("Firestore 獲取詳情失敗: \(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+
+    private func AddFoodDetail_FireStore() async {
         
         showLoading()
         
@@ -324,6 +382,34 @@ extension EditDetailScreen {
             
         } catch {
             self.MyPrint("新增失敗：\(error.localizedDescription)")
+        }
+        
+        dismissLoading()
+    }
+    
+    private func EditFoodDetail_FireStore() async {
+        
+        showLoading()
+        
+        let body: [String: Any] = [
+            "Food":             foodName,
+            "Price":            minPrice + " ~ " + maxPrice,
+            "Address":          address,
+            "Coordinate":       coordinate,
+            "Link":             link,
+            "Evaluate":         evaluate,
+            "Picture01":        picture01,
+            "Picture02":        picture02,
+        ]
+        
+        do {
+            let data = db.collection(FireStoreKey.FoodList.rawValue).document(food_id)
+            try await data.updateData(body)
+            
+            clearToViewController(MyTabBarScreen())
+            
+        } catch {
+            self.MyPrint("修改失敗：\(error.localizedDescription)")
         }
         
         dismissLoading()

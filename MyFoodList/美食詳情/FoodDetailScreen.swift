@@ -47,7 +47,11 @@ class FoodDetailScreen: MyViewController {
             let action = UIAlertAction(title: item, style: .default) { [weak self] _ in
                 guard let self = self else { return }
                 if item == "編輯" {
-                    pushViewController(EditDetailScreen())
+                    let editDetailScreen = EditDetailScreen()
+                    editDetailScreen.food_id = food_id
+                    editDetailScreen.editDetailType = .Edit
+                    
+                    pushViewController(editDetailScreen)
                 } else {
                     Task { await self.DeleteDetail_FireStore() }
                 }
@@ -112,7 +116,7 @@ extension FoodDetailScreen {
 }
 
 //MARK: - Banner設定相關
-extension FoodDetailScreen : FSPagerViewDataSource,FSPagerViewDelegate{
+extension FoodDetailScreen: FSPagerViewDataSource,FSPagerViewDelegate{
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return pictureData.count
     }
