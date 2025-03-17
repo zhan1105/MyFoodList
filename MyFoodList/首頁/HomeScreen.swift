@@ -27,7 +27,11 @@ class HomeScreen: MyViewController {
         foodListTable.delegate = self
         foodListTable.dataSource = self
         
-        setupUI()
+        setupUI()        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         Task { await FoodListFireStore() }
     }
@@ -169,9 +173,7 @@ extension HomeScreen {
             }
                         
             foodListItem.removeAll()
-                        
-            var isFoundData: Bool = true
-            
+                                    
             for food_id in foodList_ID {
                 
                 let data = db.collection(FireStoreKey.FoodList.rawValue).document(food_id)
@@ -204,11 +206,10 @@ extension HomeScreen {
                         picture02:      picture02Data
                     ))
                 }
-                
-                isFoundData = matchesPrice || matchesFood
             }
             
-            if !isFoundData {
+            let isFoundData = foodListItem.count == 0
+            if isFoundData  {
                 showMessage("沒有符合的美食")
 
                 Task { await FoodListFireStore() }
