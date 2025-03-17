@@ -16,12 +16,14 @@ class RandomScreen: MyViewController {
     private let db = Firestore.firestore()
     
     private var foodList_ID = [String]()
-    
+    private var select_id = String()
+
     private var foodName =      String()
     private var price =         String()
     private var address =       String()
     private var link =          String()
     private var evaluate =      Int()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,18 @@ class RandomScreen: MyViewController {
         setupUI()
         
         Task { await FoodListID_FireStore() }
+    }
+    
+    private func random_FoodID() {
+        guard !foodList_ID.isEmpty else { return } // 確保列表不為空
+
+        let random_ID = foodList_ID.randomElement()
+        
+        if let random_ID = random_ID, random_ID != select_id {
+            Task { await self.FoodDetail_FireStore(id: random_ID) }
+        } else {
+            self.random_FoodID()
+        }
     }
 }
 
@@ -53,11 +67,7 @@ extension RandomScreen {
         contentView.chooseButtonAction = { [weak self] in
             guard let self = self else { return }
             
-            let random_ID = foodList_ID.randomElement()
-            
-            if let random_ID = random_ID {
-                Task { await self.FoodDetail_FireStore(id: random_ID) }
-            }
+            self.random_FoodID()
         }
         
         self.view.addSubview(contentView)
