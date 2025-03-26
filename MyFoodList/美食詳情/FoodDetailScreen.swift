@@ -157,10 +157,7 @@ extension FoodDetailScreen {
             let food = dataResponse["Food"] as! String
             foodLabel.text = food
             
-            let minPrice = String(describing: dataResponse["Price_Min"])
-            let maxPrice = String(describing: dataResponse["Price_Max"])
-            
-            let price = minPrice + " ~ " + maxPrice
+            let price = dataResponse["Price"] as! String
             let address = dataResponse["Address"] as! String
             let evaluate = dataResponse["Evaluate"] as! Int
             
