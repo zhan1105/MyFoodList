@@ -221,7 +221,10 @@ extension SettingScreen {
             memberName = dataResponse["Name"] as! String
             userInfo.setUserName = memberName
             
-            setFaceID = (dataResponse["FaceID"] as! String != "")
+            let data_Login = db.collection(FireStoreKey.Login.rawValue).document(memberID)
+            let dataResponse_login = try await data_Login.getDocument()
+                        
+            setFaceID = (dataResponse_login["FaceID"] as! String != "")
             UserDefaults.standard.set(setFaceID, forKey: UserDefaultsKey.isSetFaceID.rawValue)
             
             optionTable.reloadData()
@@ -240,37 +243,24 @@ extension SettingScreen {
         memberID = UserDefaults.standard.string(forKey: UserDefaultsKey.user_id.rawValue) ?? ""
 
         do {
-            let memberData = db.collection(FireStoreKey.Member.rawValue).document(memberID)
-
-            var key = String()
-            
-            switch type {
-            case .edit_Name:
-                key = "Name"
-                userInfo.setUserName = updataValue
-            case .reset_Password:
-                
-                key = "Password"
-                let loginData = db.collection(FireStoreKey.Login.rawValue).document(memberID)
-                try await loginData.setData(["Password": password], merge: true)
-                
-            case .face_ID:
-                
-                key = "FaceID"
-                let loginData = db.collection(FireStoreKey.Login.rawValue).document(memberID)
-                try await loginData.setData(["FaceID": faceID], merge: true)
-                
-                setFaceID = true
-                UserDefaults.standard.set(setFaceID, forKey: UserDefaultsKey.isSetFaceID.rawValue)
-                
-                optionTable.reloadData()
-            }
-            
             if let updataValue = updataValue {
-                try await memberData.setData([key: updataValue], merge: true)
+                switch type {
+                case .edit_Name:
+                    
+                    let memberData = db.collection(FireStoreKey.Member.rawValue).document(memberID)
+                    try await memberData.setData(["Name": updataValue], merge: true)
+                    userInfo.setUserName = updataValue
+                    
+                case .reset_Password, .face_ID:
+                    
+                    let loginData = db.collection(FireStoreKey.Login.rawValue).document(memberID)
+                    let key = type == .face_ID ? "FaceID" : "Password"
+                    try await loginData.setData([key: updataValue], merge: true)
+                    
+                    if type == .face_ID { optionTable.reloadData() }
+                }
             }
             
-           
         } catch {
             MyPrint("Firestore 設定 FaceID 失敗: \(error.localizedDescription)")
         }

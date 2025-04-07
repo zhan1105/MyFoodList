@@ -11,6 +11,7 @@
 		7F13A10F2D7052F200C1386C /* HomeTitleUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A10E2D7052F200C1386C /* HomeTitleUI.swift */; };
 		7F13A1122D70571E00C1386C /* EditDetailUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1112D70571E00C1386C /* EditDetailUI.swift */; };
 		7F13A1142D70584200C1386C /* EvaluateButtonUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */; };
+		7F6086FD2D8D54620083E6F7 /* FoodListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6086FC2D8D54620083E6F7 /* FoodListViewModel.swift */; };
 		7F8DC79D2D8281A800FE7D52 /* FoodListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC79C2D8281A800FE7D52 /* FoodListItem.swift */; };
 		7F8DC7A02D82B48100FE7D52 /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC79F2D82B48100FE7D52 /* LocationData.swift */; };
 		7F8DC7A22D82C16200FE7D52 /* FoodDetailBannerUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8DC7A12D82C16200FE7D52 /* FoodDetailBannerUI.swift */; };
@@ -124,6 +125,7 @@
 		7F13A10E2D7052F200C1386C /* HomeTitleUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTitleUI.swift; sourceTree = "<group>"; };
 		7F13A1112D70571E00C1386C /* EditDetailUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDetailUI.swift; sourceTree = "<group>"; };
 		7F13A1132D70584200C1386C /* EvaluateButtonUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateButtonUI.swift; sourceTree = "<group>"; };
+		7F6086FC2D8D54620083E6F7 /* FoodListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListViewModel.swift; sourceTree = "<group>"; };
 		7F8DC79A2D8269C800FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
 		7F8DC79B2D8269C900FE7D52 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		7F8DC79C2D8281A800FE7D52 /* FoodListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListItem.swift; sourceTree = "<group>"; };
@@ -281,6 +283,14 @@
 				7F97EBF32D7594A800624062 /* PictureFieldUI.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		7F6086FB2D8D54520083E6F7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7F6086FC2D8D54620083E6F7 /* FoodListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		7F8DC79E2D82B46100FE7D52 /* Model */ = {
@@ -569,6 +579,7 @@
 		7F9A6AF32D66CD8F00261C09 /* 首頁 */ = {
 			isa = PBXGroup;
 			children = (
+				7F6086FB2D8D54520083E6F7 /* ViewModel */,
 				7FF0EAA02D77F0130079ADAB /* Model */,
 				7FAA1DDC2D7AD3C80022C241 /* Alert */,
 				7F9A6AF12D66CD8F00261C09 /* UI */,
@@ -964,6 +975,7 @@
 				7F9A6AD52D66CD8400261C09 /* APIUrl.swift in Sources */,
 				7FFF73412D6C52B40090E201 /* MapScreen.swift in Sources */,
 				7F9A6AD62D66CD8400261C09 /* MyDivider.swift in Sources */,
+				7F6086FD2D8D54620083E6F7 /* FoodListViewModel.swift in Sources */,
 				7F9A6AD72D66CD8400261C09 /* MyLoading.swift in Sources */,
 				7F9A6B0C2D66CFF700261C09 /* EditDetailScreen.swift in Sources */,
 				7F9A6AD82D66CD8400261C09 /* LanguageManager.swift in Sources */,

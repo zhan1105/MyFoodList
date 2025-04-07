@@ -183,9 +183,6 @@ extension RegisterScreen {
         let body: [String: String] = [
             "Member_ID":        "",
             "Name":             name,
-            "Account":          account,
-            "Password":         password,
-            "FaceID":           "",
             "FoodList_ID":      ""
         ]
         
